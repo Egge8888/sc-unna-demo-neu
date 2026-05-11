@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SC Unna – Website Design Demo",
-  description: "4 professionelle Website-Designs für den Sport Club Unna e.V.",
+  title: "Sport Club Unna e.V.",
+  description: "Der Sport Club Unna e.V. – Ski, Badminton, Radfahren, Yoga, Wassergymnastik, Wandern. Gegründet 1963, Fusion 01.04.2026.",
 };
 
 export default function RootLayout({
