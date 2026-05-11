@@ -131,7 +131,7 @@ export default function Home() {
           {designs.map((design) => (
             <Link
               key={design.id}
-              href={`/designs/${design.slug}.html`}
+              href={`/${design.slug}`}
               target="_blank"
               className="group relative bg-[#111] border border-white/10 overflow-hidden hover:border-red-600/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-600/10 block"
             >
