@@ -152,39 +152,39 @@
 
 <main class="max-w-7xl mx-auto px-margin py-xl space-y-xl">
 <!-- Hero Split Section -->
-<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
-<!-- Left: Sports Tiles Bento -->
-<div class="grid grid-cols-2 gap-sm">
-<div class="col-span-2 relative h-64 rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group">
-<img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?auto=format&fit=crop&w=1200&q=80"/>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter" style="min-height:480px">
+<!-- Left: 2 equal tiles stacked -->
+<div class="flex flex-col gap-sm h-full">
+<div class="flex-1 relative rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group cursor-pointer" style="min-height:220px">
+<img alt="Ski / Wintersport" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?auto=format&fit=crop&w=1200&q=80"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-md">
 <h3 class="font-headline-md text-headline-md text-on-primary">Ski / Wintersport</h3>
 </div>
 </div>
-<div class="relative h-48 rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group cursor-pointer">
+<div class="flex-1 relative rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group cursor-pointer" style="min-height:220px">
 <img alt="Badminton" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=800&q=80"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-md">
 <h3 class="font-headline-md text-headline-md text-on-primary">Badminton</h3>
 </div>
 </div>
-<div class="relative h-48 rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group cursor-pointer">
-<img alt="Radfahren" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-md">
-<h3 class="font-headline-md text-headline-md text-on-primary">Radfahren</h3>
 </div>
+<!-- Right: Club Info with Logo -->
+<div class="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-lg shadow-ambient flex flex-col justify-center gap-md">
+<div class="flex justify-center">
+<img src="/sc-unna-logo.jpg" alt="Sport Club Unna e.V." class="w-32 h-32 rounded-full border-4 border-surface-container-highest shadow-ambient"/>
 </div>
+<div>
+<h1 class="font-display-xl text-display-xl text-on-background leading-tight mb-xs">Sport Club Unna e.V.</h1>
+<p class="font-label-bold text-label-bold text-primary uppercase tracking-wider">Seit 1963 · Ski · Badminton · Yoga · Wandern</p>
 </div>
-<!-- Right: Club Info -->
-<div class="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-lg shadow-ambient flex flex-col justify-center">
-<h1 class="font-display-xl text-display-xl text-on-background mb-md">Sport Club Unna e.V. – Ski · Badminton · Rad · Yoga</h1>
-<p class="font-body-lg text-body-lg text-secondary mb-lg">Willkommen beim Sport Club Unna e.V. Wir verbinden sportliche Höchstleistung mit einer starken Gemeinschaft. Entdecke unser vielfältiges Sportangebot.</p>
+<p class="font-body-lg text-body-lg text-secondary">Willkommen beim Sport Club Unna e.V. Wir verbinden sportliche Höchstleistung mit einer starken Gemeinschaft. Entdecke unser vielfältiges Sportangebot.</p>
 <div class="flex space-x-md">
 <button class="bg-primary text-on-primary font-label-bold text-label-bold py-sm px-lg rounded-DEFAULT hover:opacity-90 transition-opacity">
-                        Unsere Abteilungen
-                    </button>
+  Mitglied werden
+</button>
 <button class="border-2 border-on-background text-on-background font-label-bold text-label-bold py-sm px-lg rounded-DEFAULT hover:bg-surface-container transition-colors">
-                        Mitglied werden
-                    </button>
+  Mehr erfahren
+</button>
 </div>
 </div>
 </section>
