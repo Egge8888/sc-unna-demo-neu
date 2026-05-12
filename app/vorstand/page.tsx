@@ -31,7 +31,7 @@ const members: VorstandMember[] = [
   {
     role: "2. Vorsitzender",
     name: "Matthias Fischer",
-    initials: "MF",
+    photo: "/vorstand/matthias-fischer.jpg",
     email: "matthias.fischer@scunna.de",
   },
   {
@@ -46,7 +46,7 @@ const members: VorstandMember[] = [
   {
     role: "Schriftführer",
     name: "Nils Holt",
-    initials: "NH",
+    photo: "/vorstand/nils-holt.jpg",
     email: "nils.holt@scunna.de",
   },
   {
@@ -70,8 +70,8 @@ const members: VorstandMember[] = [
   {
     role: "Jugend",
     name: "Luke Colin Finke",
-    initials: "LF",
-    email: "like.finke@scunna.de",
+    photo: "/vorstand/luke-finke.jpg",
+    email: "luke.finke@scunna.de",
   },
   {
     role: "Allgemeinsport / Veranstaltungen",
