@@ -1,12 +1,65 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { getAllStandings, type TeamStandings } from "@/lib/badminton-standings";
 
 export const metadata: Metadata = {
   title: "Badminton",
 };
 
-export default function BadmintonPage() {
+// Revalidate every 6 hours
+export const revalidate = 21600;
+
+function StandingsTable({ data }: { data: TeamStandings | null }) {
+  if (!data || data.rows.length === 0) {
+    return (
+      <p className="font-body-md text-secondary text-sm italic">
+        Tabelle aktuell nicht verfügbar.
+      </p>
+    );
+  }
+
+  const date = new Date(data.fetchedAt).toLocaleDateString("de-DE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
+  return (
+    <div className="border-t border-surface-container-high pt-md mt-auto">
+      <p className="font-label-bold text-label-bold text-secondary text-[10px] uppercase mb-sm">
+        Tabelle · Stand {date} · <span className="text-primary">Live</span>
+      </p>
+      <table className="w-full text-xs border-collapse">
+        <thead>
+          <tr className="text-secondary font-label-bold uppercase text-[10px]">
+            <th className="text-left pb-xs w-5">Pl.</th>
+            <th className="text-left pb-xs">Mannschaft</th>
+            <th className="text-right pb-xs w-6">Sp.</th>
+            <th className="text-right pb-xs w-10">Pkt.</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.rows.map((row) => (
+            <tr
+              key={row.pos}
+              className={`border-t border-surface-container-high ${row.isUnna ? "bg-primary/5 font-bold" : "text-secondary"}`}
+            >
+              <td className={`py-[3px] ${row.isUnna ? "text-primary" : ""}`}>{row.pos}</td>
+              <td className={`py-[3px] ${row.isUnna ? "text-primary" : ""}`}>{row.team}</td>
+              <td className={`text-right py-[3px] ${row.isUnna ? "text-primary" : ""}`}>{row.played}</td>
+              <td className={`text-right py-[3px] ${row.isUnna ? "text-primary" : ""}`}>{row.points}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default async function BadmintonPage() {
+  const standings = await getAllStandings().catch(() => null);
+
   return (
     <>
       <Navbar current="badminton" />
@@ -216,28 +269,7 @@ export default function BadmintonPage() {
                   </a>
                 </div>
               </div>
-              <div className="border-t border-surface-container-high pt-md mt-auto">
-                <p className="font-label-bold text-label-bold text-secondary text-[10px] uppercase mb-sm">Tabelle · Stand 21.04.2026</p>
-                <table className="w-full text-xs border-collapse">
-                  <thead>
-                    <tr className="text-secondary font-label-bold uppercase text-[10px]">
-                      <th className="text-left pb-xs w-5">Pl.</th>
-                      <th className="text-left pb-xs">Mannschaft</th>
-                      <th className="text-right pb-xs w-6">Sp.</th>
-                      <th className="text-right pb-xs w-10">Pkt.</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">1</td><td className="py-[3px]">Letmather TV 1877</td><td className="text-right py-[3px]">10</td><td className="text-right py-[3px]">18 : 2</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">2</td><td className="py-[3px]">SG Lendringsen/Leck.</td><td className="text-right py-[3px]">10</td><td className="text-right py-[3px]">15 : 5</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">3</td><td className="py-[3px]">BC Herscheid</td><td className="text-right py-[3px]">10</td><td className="text-right py-[3px]">12 : 8</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">4</td><td className="py-[3px]">TV Neheim</td><td className="text-right py-[3px]">10</td><td className="text-right py-[3px]">8 : 12</td></tr>
-                    <tr className="border-t border-surface-container-high bg-primary/5 font-bold"><td className="py-[3px] text-primary">5</td><td className="py-[3px] text-primary">SG Unna 1</td><td className="text-right py-[3px] text-primary">10</td><td className="text-right py-[3px] text-primary">6 : 14</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">6</td><td className="py-[3px]">TV Werne</td><td className="text-right py-[3px]">10</td><td className="text-right py-[3px]">1 : 19</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">7</td><td className="py-[3px]">TuS Neuenrade</td><td className="text-right py-[3px]">0</td><td className="text-right py-[3px]">– : –</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <StandingsTable data={standings?.senioren1 ?? null} />
             </div>
 
             {/* 2. Senioren */}
@@ -261,29 +293,7 @@ export default function BadmintonPage() {
                   </a>
                 </div>
               </div>
-              <div className="border-t border-surface-container-high pt-md mt-auto">
-                <p className="font-label-bold text-label-bold text-secondary text-[10px] uppercase mb-sm">Tabelle · Stand 21.04.2026</p>
-                <table className="w-full text-xs border-collapse">
-                  <thead>
-                    <tr className="text-secondary font-label-bold uppercase text-[10px]">
-                      <th className="text-left pb-xs w-5">Pl.</th>
-                      <th className="text-left pb-xs">Mannschaft</th>
-                      <th className="text-right pb-xs w-6">Sp.</th>
-                      <th className="text-right pb-xs w-10">Pkt.</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">1</td><td className="py-[3px]">TuWa Bockum-Hövel</td><td className="text-right py-[3px]">14</td><td className="text-right py-[3px]">22 : 6</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">2</td><td className="py-[3px]">TV Jahn Oelde</td><td className="text-right py-[3px]">14</td><td className="text-right py-[3px]">20 : 8</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">3</td><td className="py-[3px]">Soester TV</td><td className="text-right py-[3px]">14</td><td className="text-right py-[3px]">16 : 12</td></tr>
-                    <tr className="border-t border-surface-container-high bg-primary/5 font-bold"><td className="py-[3px] text-primary">4</td><td className="py-[3px] text-primary">SG Unna 2</td><td className="text-right py-[3px] text-primary">14</td><td className="text-right py-[3px] text-primary">16 : 12</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">5</td><td className="py-[3px]">Polizei SV Bork</td><td className="text-right py-[3px]">14</td><td className="text-right py-[3px]">12 : 16</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">6</td><td className="py-[3px]">TV Werne 2</td><td className="text-right py-[3px]">14</td><td className="text-right py-[3px]">12 : 16</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">7</td><td className="py-[3px]">Hammer SportClub</td><td className="text-right py-[3px]">14</td><td className="text-right py-[3px]">8 : 20</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">8</td><td className="py-[3px]">Sendenh./Ahlen/Westb.</td><td className="text-right py-[3px]">14</td><td className="text-right py-[3px]">6 : 22</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <StandingsTable data={standings?.senioren2 ?? null} />
             </div>
 
             {/* Junioren */}
@@ -307,26 +317,7 @@ export default function BadmintonPage() {
                   </a>
                 </div>
               </div>
-              <div className="border-t border-surface-container-high pt-md mt-auto">
-                <p className="font-label-bold text-label-bold text-secondary text-[10px] uppercase mb-sm">Tabelle · Stand 21.04.2026</p>
-                <table className="w-full text-xs border-collapse">
-                  <thead>
-                    <tr className="text-secondary font-label-bold uppercase text-[10px]">
-                      <th className="text-left pb-xs w-5">Pl.</th>
-                      <th className="text-left pb-xs">Mannschaft</th>
-                      <th className="text-right pb-xs w-6">Sp.</th>
-                      <th className="text-right pb-xs w-10">Pkt.</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">1</td><td className="py-[3px]">Warendorfer SU M2</td><td className="text-right py-[3px]">8</td><td className="text-right py-[3px]">16 : 0</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">2</td><td className="py-[3px]">TV Werne M1</td><td className="text-right py-[3px]">8</td><td className="text-right py-[3px]">11 : 5</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">3</td><td className="py-[3px]">TB Leckingsen M1</td><td className="text-right py-[3px]">8</td><td className="text-right py-[3px]">6 : 10</td></tr>
-                    <tr className="border-t border-surface-container-high bg-primary/5 font-bold"><td className="py-[3px] text-primary">4</td><td className="py-[3px] text-primary">BSC Unna M1</td><td className="text-right py-[3px] text-primary">8</td><td className="text-right py-[3px] text-primary">4 : 12</td></tr>
-                    <tr className="text-secondary border-t border-surface-container-high"><td className="py-[3px]">5</td><td className="py-[3px]">BC Lünen M1</td><td className="text-right py-[3px]">8</td><td className="text-right py-[3px]">3 : 13</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <StandingsTable data={standings?.junioren ?? null} />
             </div>
 
           </div>

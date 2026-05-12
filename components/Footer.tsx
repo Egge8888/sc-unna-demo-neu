@@ -23,8 +23,8 @@ export default function Footer() {
         <div>
           <h4 className="font-label-bold text-label-bold text-on-surface-variant mb-sm">Links</h4>
           <ul className="space-y-xs font-body-md text-body-md text-secondary">
-            <li><a className="hover:text-primary transition-colors" href="#">Impressum</a></li>
-            <li><a className="hover:text-primary transition-colors" href="#">Datenschutz</a></li>
+            <li><Link className="hover:text-primary transition-colors" href="/impressum">Impressum</Link></li>
+            <li><Link className="hover:text-primary transition-colors" href="/datenschutz">Datenschutz</Link></li>
             <li><Link className="hover:text-primary transition-colors" href="/vorstand">Vorstand</Link></li>
           </ul>
         </div>

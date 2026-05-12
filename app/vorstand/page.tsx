@@ -104,7 +104,7 @@ export default function VorstandPage() {
       <main className="max-w-7xl mx-auto px-margin py-xl space-y-xl">
         <section>
           <div className="mb-lg">
-            <h1 className="font-display-xl text-display-xl text-on-background mb-sm">Der Vorstand des Ski Clubs</h1>
+            <h1 className="font-display-xl text-display-xl text-on-background mb-sm">Vorstand des SC Unna e.V.</h1>
             <p className="font-body-lg text-secondary max-w-2xl">
               10 engagierte Vorstandsmitglieder leiten ehrenamtlich den Sport Club Unna e.V. Hier finden Sie Aufgabenbereiche, Anschriften, Telefonnummern und E-Mail-Adressen.
             </p>

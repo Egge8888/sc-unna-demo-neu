@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import MobileMenu from "./MobileMenu";
 
-type NavPage = "home" | "badminton" | "vorstand" | "stammtisch" | "";
+type NavPage = "home" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
 
 export default function Navbar({ current = "" }: { current?: NavPage }) {
   const link = (page: NavPage, always = false) =>
@@ -10,7 +11,7 @@ export default function Navbar({ current = "" }: { current?: NavPage }) {
       : "text-secondary font-label-bold text-label-bold uppercase hover:text-primary transition-colors whitespace-nowrap";
 
   return (
-    <nav className="bg-surface shadow-sm sticky top-0 z-50 w-full">
+    <nav className="bg-surface shadow-sm sticky top-0 z-50 w-full relative">
       <div className="flex justify-between items-center w-full px-margin py-3 max-w-7xl mx-auto gap-4">
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
           <Image
@@ -68,16 +69,14 @@ export default function Navbar({ current = "" }: { current?: NavPage }) {
           <a className={link("")} href="#">Freizeiten</a>
           <Link className={link("stammtisch")} href="/stammtisch" aria-current={current === "stammtisch" ? "page" : undefined}>Stammtisch</Link>
           <a className={link("")} href="#">Galerie</a>
-          <a className={link("")} href="#">Impressum</a>
+          <Link className={link("impressum")} href="/impressum">Impressum</Link>
         </div>
 
         <div className="flex items-center gap-2 flex-shrink-0">
           <button className="bg-primary text-on-primary font-label-bold text-label-bold py-2 px-5 rounded hover:opacity-90 transition-opacity hidden md:block whitespace-nowrap text-xs">
             Mitglied werden
           </button>
-          <button className="lg:hidden text-on-surface">
-            <span className="material-symbols-outlined text-[24px]">menu</span>
-          </button>
+          <MobileMenu current={current} />
         </div>
       </div>
     </nav>
