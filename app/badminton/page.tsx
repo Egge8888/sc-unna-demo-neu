@@ -124,9 +124,9 @@ export default function BadmintonPage() {
               <div>
                 <p className="font-label-bold text-label-bold text-primary uppercase tracking-wider text-[11px] mb-xs">TH Friedrichsborn · Unna-Königsborn</p>
                 <p className="font-headline-md text-on-background mb-xs">Turnhalle Grundschule Friedrichsborn</p>
-                <p className="font-body-md text-secondary text-sm mb-xs">Unna-Königsborn</p>
-                <p className="font-body-md text-secondary text-sm mb-md">Hubert-Biernat-Straße, 59427 Unna-Königsborn</p>
-                <a href="https://maps.google.com/?q=Hubert-Biernat-Straße,+59427+Unna-Königsborn" target="_blank" rel="noopener" className="inline-flex items-center gap-xs font-label-bold text-label-bold text-primary text-xs uppercase tracking-wider hover:underline">
+                <p className="font-body-md text-secondary text-sm mb-xs">Unna</p>
+                <p className="font-body-md text-secondary text-sm mb-md">Friedrich-Ebert-Str. 113, 59425 Unna</p>
+                <a href="https://maps.google.com/?q=Friedrich-Ebert-Str.+113,+59425+Unna" target="_blank" rel="noopener" className="inline-flex items-center gap-xs font-label-bold text-label-bold text-primary text-xs uppercase tracking-wider hover:underline">
                   <span className="material-symbols-outlined text-sm">open_in_new</span>
                   Google Maps öffnen
                 </a>
