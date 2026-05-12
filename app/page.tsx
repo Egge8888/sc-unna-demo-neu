@@ -77,19 +77,19 @@ export default function HomePage() {
         </section>
 
         {/* Fusion Module */}
-        <section className="bg-primary text-on-primary rounded-xl p-lg shadow-ambient relative overflow-hidden">
+        <section className="bg-primary text-on-primary rounded-xl px-lg py-md shadow-ambient relative overflow-hidden">
           <div className="absolute -right-12 -bottom-12 opacity-10">
             <span className="material-symbols-outlined text-[280px]">handshake</span>
           </div>
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
-            <div>
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-gutter items-center">
+            <div className="md:col-span-2">
               <span className="bg-on-primary text-primary font-label-bold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full inline-block mb-4">
                 SEIT 01.04.2026
               </span>
               <h2 className="font-display-xl text-display-xl uppercase mb-md leading-none">
                 Eine neue<br />Ära des Sports
               </h2>
-              <p className="font-body-lg max-w-md opacity-90">
+              <p className="font-body-lg opacity-90">
                 Aus Ski-Club Unna und Badminton-Sport-Club Unna ist Sport Club Unna e.V. entstanden. Mehr Vielfalt, mehr Gemeinschaft.
               </p>
             </div>
