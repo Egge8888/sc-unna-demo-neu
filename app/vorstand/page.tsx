@@ -32,6 +32,7 @@ const members: VorstandMember[] = [
     role: "2. Vorsitzender",
     name: "Matthias Fischer",
     photo: "/vorstand/matthias-fischer.jpg",
+    mobile: "0163 / 3472437",
     email: "matthias.fischer@scunna.de",
   },
   {
@@ -71,6 +72,7 @@ const members: VorstandMember[] = [
     role: "Jugend",
     name: "Luke Colin Finke",
     photo: "/vorstand/luke-finke.jpg",
+    mobile: "0176 / 24645426",
     email: "luke.finke@scunna.de",
   },
   {
