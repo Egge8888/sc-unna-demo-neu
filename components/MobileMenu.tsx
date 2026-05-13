@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type NavPage = "home" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
 
 export default function MobileMenu({ current = "" }: { current?: NavPage }) {
   const [open, setOpen] = useState(false);
@@ -47,7 +47,7 @@ export default function MobileMenu({ current = "" }: { current?: NavPage }) {
             <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Wandern</a>
           </div>
 
-          <a href="#" className={linkClass(false)} onClick={close}>Aktuelles</a>
+          <Link href="/aktuelles" className={linkClass(current === "aktuelles")} onClick={close}>Aktuelles</Link>
           <a href="#" className={linkClass(false)} onClick={close}>Termine</a>
           <Link href="/vorstand" className={linkClass(current === "vorstand")} onClick={close}>Vorstand</Link>
           <a href="#" className={linkClass(false)} onClick={close}>Freizeiten</a>

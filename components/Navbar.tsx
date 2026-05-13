@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
 
-type NavPage = "home" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
 
 export default function Navbar({ current = "" }: { current?: NavPage }) {
   const link = (page: NavPage, always = false) =>
@@ -63,7 +63,7 @@ export default function Navbar({ current = "" }: { current?: NavPage }) {
             </div>
           </div>
 
-          <a className={link("")} href="#">Aktuelles</a>
+          <Link className={link("aktuelles")} href="/aktuelles" aria-current={current === "aktuelles" ? "page" : undefined}>Aktuelles</Link>
           <a className={link("")} href="#">Termine</a>
           <Link className={link("vorstand")} href="/vorstand" aria-current={current === "vorstand" ? "page" : undefined}>Vorstand</Link>
           <a className={link("")} href="#">Freizeiten</a>
