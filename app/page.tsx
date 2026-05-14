@@ -154,20 +154,20 @@ export default function HomePage() {
             </a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-sm">
-            <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+            <Link href="/ski" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">downhill_skiing</span>
               <div>
                 <span className="inline-block bg-primary text-on-primary font-label-bold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded mb-1">Abteilung</span>
                 <h3 className="font-label-bold text-on-background uppercase">Ski</h3>
               </div>
-            </a>
-            <a href="/badminton" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+            </Link>
+            <Link href="/badminton" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">sports_tennis</span>
               <div>
                 <span className="inline-block bg-primary text-on-primary font-label-bold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded mb-1">Abteilung</span>
                 <h3 className="font-label-bold text-on-background uppercase">Badminton</h3>
               </div>
-            </a>
+            </Link>
             <Link href="/radfahren" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">directions_bike</span>
               <div><h3 className="font-label-bold text-on-background uppercase">Radfahren</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
