@@ -97,15 +97,15 @@ export default function HomePage() {
               </p>
             </div>
             <div className="flex items-center justify-center gap-sm flex-nowrap">
-              <div className="bg-on-primary/10 backdrop-blur-sm rounded-xl px-sm py-sm text-center">
+              <Link href="/badminton" className="bg-on-primary/10 backdrop-blur-sm rounded-xl px-sm py-sm text-center hover:bg-on-primary/20 transition-colors">
                 <span className="material-symbols-outlined text-4xl">badminton</span>
                 <p className="font-label-bold uppercase text-[10px] mt-1 whitespace-nowrap">BSC Unna</p>
-              </div>
+              </Link>
               <span className="text-2xl font-extrabold flex-shrink-0">+</span>
-              <div className="bg-on-primary/10 backdrop-blur-sm rounded-xl px-sm py-sm text-center">
+              <Link href="/ski" className="bg-on-primary/10 backdrop-blur-sm rounded-xl px-sm py-sm text-center hover:bg-on-primary/20 transition-colors">
                 <span className="material-symbols-outlined text-4xl">downhill_skiing</span>
                 <p className="font-label-bold uppercase text-[10px] mt-1 whitespace-nowrap">Ski-Club</p>
-              </div>
+              </Link>
               <span className="text-2xl font-extrabold flex-shrink-0">=</span>
               <div className="bg-on-primary text-primary rounded-xl px-sm py-sm text-center">
                 <Image src="/sc-unna-logo.jpg" alt="SC Unna" width={44} height={44} className="mx-auto rounded-full" />
