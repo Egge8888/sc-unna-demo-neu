@@ -50,13 +50,56 @@ export default function HomePage() {
 
           {/* Right: Club Info */}
           <div className="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient flex flex-col justify-center items-center gap-sm text-center">
-            <Image
-              src="/sc-unna-logo.jpg"
-              alt="Sport Club Unna e.V."
-              width={144}
-              height={144}
-              className="rounded-full border-4 border-surface-container-highest shadow-ambient"
-            />
+            {/* Logo mit klickbaren Segmenten — SVG-Overlay über die drei Sportzonen */}
+            <div className="relative w-[144px] h-[144px] flex-shrink-0">
+              <Image
+                src="/sc-unna-logo.jpg"
+                alt="Sport Club Unna e.V."
+                width={144}
+                height={144}
+                className="rounded-full border-4 border-surface-container-highest shadow-ambient"
+              />
+              {/*
+                SVG-Kreissektoren (je 120°, Peace-Zeichen-Aufteilung):
+                Grenzen bei (72,0)=12h, (134,108)=4h, (10,108)=8h
+                Badminton = linkes Segment (8h→12h)
+                Ski       = rechtes oberes Segment (12h→4h)
+                Radfahren = unteres Segment (4h→8h)
+              */}
+              <svg
+                className="absolute inset-0 w-full h-full rounded-full"
+                viewBox="0 0 144 144"
+                role="presentation"
+              >
+                <a href="/badminton" aria-label="Badminton">
+                  <title>Badminton</title>
+                  <path
+                    d="M 72,72 L 9.65,108 A 72,72 0 0,1 72,0 Z"
+                    fill="transparent"
+                    className="hover:fill-black/15 cursor-pointer"
+                    style={{ transition: "fill 0.2s" }}
+                  />
+                </a>
+                <a href="/ski" aria-label="Ski / Wintersport">
+                  <title>Ski / Wintersport</title>
+                  <path
+                    d="M 72,72 L 72,0 A 72,72 0 0,1 134.35,108 Z"
+                    fill="transparent"
+                    className="hover:fill-black/15 cursor-pointer"
+                    style={{ transition: "fill 0.2s" }}
+                  />
+                </a>
+                <a href="/radfahren" aria-label="Radfahren">
+                  <title>Radfahren</title>
+                  <path
+                    d="M 72,72 L 134.35,108 A 72,72 0 0,1 9.65,108 Z"
+                    fill="transparent"
+                    className="hover:fill-black/15 cursor-pointer"
+                    style={{ transition: "fill 0.2s" }}
+                  />
+                </a>
+              </svg>
+            </div>
             <div>
               <h1 className="font-display-xl text-display-xl text-on-background leading-tight mb-xs">
                 Sport Club Unna e.V.
