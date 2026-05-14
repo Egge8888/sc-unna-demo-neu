@@ -93,20 +93,20 @@ export default function HomePage() {
                 Aus Ski-Club Unna und Badminton-Sport-Club Unna ist Sport Club Unna e.V. entstanden. Mehr Vielfalt, mehr Gemeinschaft.
               </p>
             </div>
-            <div className="flex items-center justify-center gap-md flex-wrap">
-              <div className="bg-on-primary/10 backdrop-blur-sm rounded-xl p-md text-center min-w-[100px]">
-                <span className="material-symbols-outlined text-5xl">badminton</span>
-                <p className="font-label-bold uppercase text-xs mt-2">BSC Unna</p>
+            <div className="flex items-center justify-center gap-sm flex-nowrap">
+              <div className="bg-on-primary/10 backdrop-blur-sm rounded-xl px-sm py-sm text-center">
+                <span className="material-symbols-outlined text-4xl">badminton</span>
+                <p className="font-label-bold uppercase text-[10px] mt-1 whitespace-nowrap">BSC Unna</p>
               </div>
-              <span className="text-3xl font-extrabold">+</span>
-              <div className="bg-on-primary/10 backdrop-blur-sm rounded-xl p-md text-center min-w-[100px]">
-                <span className="material-symbols-outlined text-5xl">downhill_skiing</span>
-                <p className="font-label-bold uppercase text-xs mt-2">Ski-Club</p>
+              <span className="text-2xl font-extrabold flex-shrink-0">+</span>
+              <div className="bg-on-primary/10 backdrop-blur-sm rounded-xl px-sm py-sm text-center">
+                <span className="material-symbols-outlined text-4xl">downhill_skiing</span>
+                <p className="font-label-bold uppercase text-[10px] mt-1 whitespace-nowrap">Ski-Club</p>
               </div>
-              <span className="text-3xl font-extrabold">=</span>
-              <div className="bg-on-primary text-primary rounded-xl p-md text-center min-w-[100px]">
-                <Image src="/sc-unna-logo.jpg" alt="SC Unna" width={48} height={48} className="mx-auto rounded-full" />
-                <p className="font-label-bold uppercase text-xs mt-2">SC Unna</p>
+              <span className="text-2xl font-extrabold flex-shrink-0">=</span>
+              <div className="bg-on-primary text-primary rounded-xl px-sm py-sm text-center">
+                <Image src="/sc-unna-logo.jpg" alt="SC Unna" width={44} height={44} className="mx-auto rounded-full" />
+                <p className="font-label-bold uppercase text-[10px] mt-1 whitespace-nowrap">SC Unna</p>
               </div>
             </div>
           </div>
