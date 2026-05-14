@@ -107,17 +107,6 @@ export default function TerminePage() {
           </div>
         </section>
 
-        {/* Radeltouren Hinweis */}
-        <section className="bg-surface-container-low border border-surface-container-highest rounded-xl p-md flex items-start gap-md">
-          <span className="material-symbols-outlined text-primary text-2xl flex-shrink-0">directions_bike</span>
-          <div>
-            <p className="font-label-bold text-on-surface mb-xs">Radeltouren — samstags, kurzfristig</p>
-            <p className="text-sm text-secondary font-body-md leading-relaxed">
-              Radtouren werden kurzfristig organisiert und über WhatsApp angekündigt. Interesse? Beim Vereinsvorstand melden.
-            </p>
-          </div>
-        </section>
-
         {/* Past */}
         <section className="space-y-md">
           <h2 className="font-headline-lg text-headline-lg text-on-background flex items-center gap-sm">

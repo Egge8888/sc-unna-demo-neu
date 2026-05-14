@@ -216,17 +216,20 @@ export default function SkiPage() {
         </section>
 
         {/* Platzhalter: weitere Infos */}
-        <section className="bg-surface-container-low border border-dashed border-surface-container-highest rounded-xl p-md">
-          <div className="flex items-start gap-sm">
-            <span className="material-symbols-outlined text-secondary text-2xl flex-shrink-0 mt-0.5">info</span>
-            <div>
-              <p className="font-label-bold text-on-surface text-sm mb-xs">Weitere Informationen folgen</p>
-              <p className="text-sm text-secondary font-body-md leading-relaxed">
-                Infos zu Mitgliedsbeiträgen, Tagesfahrten und weiteren Vereinsaktivitäten der Ski-Abteilung werden hier ergänzt. Aktuell findest du alle Neuigkeiten im Bereich{" "}
-                <a href="/aktuelles" className="text-primary hover:underline font-label-bold">Aktuelles</a>{" "}
-                oder im Infobrief des Vereins.
-              </p>
-            </div>
+        {/* Nacht-Skifahren Winterberg */}
+        <section className="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient flex items-start gap-md">
+          <span className="material-symbols-outlined text-primary text-2xl flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>nights_stay</span>
+          <div>
+            <p className="font-label-bold text-[10px] uppercase tracking-wider text-primary mb-xs">Tipp der Saison</p>
+            <h3 className="font-extrabold text-on-background text-base mb-xs">Nacht-Skifahren in Winterberg</h3>
+            <p className="text-sm text-secondary font-body-md leading-relaxed">
+              Freitags abends bei guter Schneelage — Winterberg bietet dank Kühlteppichen neuerdings eine längere, sichere Skisaison.
+              Transport mit Bulli oder Sprinter. Nähere Details folgen.
+            </p>
+            <p className="text-sm text-secondary font-body-md mt-xs flex items-center gap-xs">
+              <span className="material-symbols-outlined text-xs">directions_car</span>
+              Wer ein Fahrzeug (VW Bulli / Mercedes Sprinter o.Ä.) zur Verfügung stellen kann: bitte beim Vorstand melden!
+            </p>
           </div>
         </section>
 

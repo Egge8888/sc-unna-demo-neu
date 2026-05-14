@@ -13,11 +13,70 @@ export type Termin = {
 export const allTermine: Termin[] = [
   {
     id: "radeltouren-samstags",
-    title: "Radeltouren",
+    title: "Samstags-Radeln",
     startDate: "2099-01-01", // Dummy — wird nicht angezeigt (recurring: true)
+    time: "meistens 13:00 Uhr",
     category: "sport",
-    description: "Kurzfristige Ankündigung über WhatsApp — einfach beim Vorstand für den Verteiler melden.",
+    description: "Ca. 20–30 km, gemütliches Tempo. Treffpunkt wird jeweils über WhatsApp bekannt gegeben. Aufnahme in die WhatsApp-Gruppe: Anne oder Hella kontaktieren.",
     recurring: true,
+  },
+  {
+    id: "freitags-radeln-2026",
+    title: "Freitags-Radeln Sommerferien",
+    startDate: "2026-07-24",
+    endDate: "2026-08-28",
+    time: "18:30 Uhr",
+    location: "Bushaltestelle vor dem Rathaus, Unna",
+    category: "sport",
+    description: "Gemütliche Radtouren für Mitglieder und Freunde in den NRW-Sommerferien. Termine: 24.7. · 31.7. · 7.8. · 14.8. · 21.8. · 28.8. Einfach erscheinen oder bei Anne Hentrich melden.",
+  },
+  {
+    id: "scuparty-bornekampbad-2026",
+    title: "SCU Zusammenkomm-Party im Bornekampbad",
+    startDate: "2026-08-01", // Platzhalter — genauer Termin folgt
+    location: "Bornekampbad Unna",
+    category: "social",
+    description: "Sommerfest mit Vorstellung der Sportabteilungen und Abendparty mit DJ. Genauer Termin folgt.",
+  },
+  {
+    id: "stadtmeisterschaften-badminton-2026",
+    title: "Stadtmeisterschaften Badminton 2026",
+    startDate: "2026-04-25",
+    endDate: "2026-04-26",
+    location: "Peter-Weiß-Gesamtschule, Unna",
+    category: "sport",
+    description: "Stadtmeisterschaften Badminton 2026. Infos bei Ingo Filbrandt.",
+  },
+  {
+    id: "bowling-2026",
+    title: "Bowling-Abend",
+    startDate: "2026-10-01", // Platzhalter — genauer Termin folgt
+    category: "social",
+    description: "Jährlicher Bowling-Abend für Mitglieder. Eigenanteil 5 € (+2,50 € Schuhverleih). Anmeldung bei Rolf Stüwe. Genauer Termin folgt.",
+  },
+  {
+    id: "saisoneroffnung-2026",
+    title: "Ski-Saisoneröffnung 2026/27",
+    startDate: "2026-11-07",
+    location: "Massener Straße vor Intersport Leiendecker, Unna",
+    category: "ski",
+    description: "Traditionelle Eröffnung der Skisaison. Freiwillige Helfer melden sich bei Oliver Knieling.",
+  },
+  {
+    id: "doppelkopf-2026",
+    title: "Doppelkopf-Turnier",
+    startDate: "2026-11-01", // Platzhalter — genauer Termin folgt
+    category: "social",
+    description: "Kartenspielturnier Herbst 2026. Ort noch offen. Anmeldung bei Lisa Pelckmans. Genauer Termin folgt.",
+  },
+  {
+    id: "osterfreizeit-2027",
+    title: "Oster-Skifreizeit Zell am See 2027",
+    startDate: "2027-03-27",
+    endDate: "2027-04-03",
+    location: "Sportresort Alpenblick, Zell am See",
+    category: "ski",
+    description: "Oster-Familien-Jedermann-Skifreizeit. Anmeldung bei Rainer Nordhaus (WhatsApp).",
   },
   {
     id: "bowling-2025",
