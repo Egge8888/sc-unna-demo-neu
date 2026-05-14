@@ -168,26 +168,26 @@ export default function HomePage() {
                 <h3 className="font-label-bold text-on-background uppercase">Badminton</h3>
               </div>
             </a>
-            <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+            <Link href="/radfahren" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">directions_bike</span>
               <div><h3 className="font-label-bold text-on-background uppercase">Radfahren</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
-            </a>
-            <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+            </Link>
+            <Link href="/yoga" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">self_improvement</span>
               <div><h3 className="font-label-bold text-on-background uppercase">Yoga</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
-            </a>
-            <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+            </Link>
+            <Link href="/pilates" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">fitness_center</span>
               <div><h3 className="font-label-bold text-on-background uppercase">Pilates</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
-            </a>
-            <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+            </Link>
+            <Link href="/wassergymnastik" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">pool</span>
               <div><h3 className="font-label-bold text-on-background uppercase">Wassergymnastik</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
-            </a>
-            <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+            </Link>
+            <Link href="/wandern" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">hiking</span>
               <div><h3 className="font-label-bold text-on-background uppercase">Wandern</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
-            </a>
+            </Link>
             <a href="#" className="bg-on-background text-on-primary rounded-lg p-sm min-h-[120px] flex flex-col justify-center gap-xs">
               <span className="material-symbols-outlined text-3xl text-primary">arrow_forward</span>
               <span className="font-label-bold uppercase text-xs">Übersicht</span>

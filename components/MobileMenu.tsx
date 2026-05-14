@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type NavPage = "home" | "aktuelles" | "ski" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
 
 export default function MobileMenu({ current = "" }: { current?: NavPage }) {
   const [open, setOpen] = useState(false);
@@ -40,11 +40,11 @@ export default function MobileMenu({ current = "" }: { current?: NavPage }) {
               Badminton
             </Link>
             <Link href="/ski" className={`block px-md py-sm font-body-md text-sm transition-colors border-t border-surface-container-high ${current === "ski" ? "text-primary" : "text-on-surface hover:text-primary"}`} onClick={close}>Ski / Wintersport</Link>
-            <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Radfahren</a>
-            <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Yoga</a>
-            <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Pilates</a>
-            <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Wassergymnastik</a>
-            <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Wandern</a>
+            <Link href="/radfahren" className={`block px-md py-sm font-body-md text-sm transition-colors border-t border-surface-container-high ${current === "radfahren" ? "text-primary" : "text-on-surface hover:text-primary"}`} onClick={close}>Radfahren</Link>
+            <Link href="/yoga" className={`block px-md py-sm font-body-md text-sm transition-colors border-t border-surface-container-high ${current === "yoga" ? "text-primary" : "text-on-surface hover:text-primary"}`} onClick={close}>Yoga</Link>
+            <Link href="/pilates" className={`block px-md py-sm font-body-md text-sm transition-colors border-t border-surface-container-high ${current === "pilates" ? "text-primary" : "text-on-surface hover:text-primary"}`} onClick={close}>Pilates</Link>
+            <Link href="/wassergymnastik" className={`block px-md py-sm font-body-md text-sm transition-colors border-t border-surface-container-high ${current === "wassergymnastik" ? "text-primary" : "text-on-surface hover:text-primary"}`} onClick={close}>Wassergymnastik</Link>
+            <Link href="/wandern" className={`block px-md py-sm font-body-md text-sm transition-colors border-t border-surface-container-high ${current === "wandern" ? "text-primary" : "text-on-surface hover:text-primary"}`} onClick={close}>Wandern</Link>
           </div>
 
           <Link href="/aktuelles" className={linkClass(current === "aktuelles")} onClick={close}>Aktuelles</Link>

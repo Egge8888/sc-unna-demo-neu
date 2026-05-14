@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
 
-type NavPage = "home" | "aktuelles" | "ski" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
 
 export default function Navbar({ current = "" }: { current?: NavPage }) {
   const link = (page: NavPage, always = false) =>
@@ -29,7 +29,7 @@ export default function Navbar({ current = "" }: { current?: NavPage }) {
         <div className="hidden lg:flex items-center gap-5 text-xs">
           <div className="nav-dropdown relative">
             <button
-              className={`${current === "badminton" || current === "ski" ? "text-primary" : "text-secondary hover:text-primary"} font-label-bold text-label-bold uppercase transition-colors flex items-center gap-1 py-2 whitespace-nowrap`}
+              className={`${["badminton","ski","radfahren","yoga","pilates","wassergymnastik","wandern"].includes(current) ? "text-primary" : "text-secondary hover:text-primary"} font-label-bold text-label-bold uppercase transition-colors flex items-center gap-1 py-2 whitespace-nowrap`}
             >
               Sportl. Aktivitäten
               <svg
@@ -61,11 +61,11 @@ export default function Navbar({ current = "" }: { current?: NavPage }) {
               >
                 Ski / Wintersport
               </Link>
-              <a href="#" className="block px-4 py-2.5 text-on-surface font-label-bold uppercase text-xs hover:text-primary hover:bg-surface-container-low transition-colors border-b border-surface-variant">Radfahren</a>
-              <a href="#" className="block px-4 py-2.5 text-on-surface font-label-bold uppercase text-xs hover:text-primary hover:bg-surface-container-low transition-colors border-b border-surface-variant">Yoga</a>
-              <a href="#" className="block px-4 py-2.5 text-on-surface font-label-bold uppercase text-xs hover:text-primary hover:bg-surface-container-low transition-colors border-b border-surface-variant">Pilates</a>
-              <a href="#" className="block px-4 py-2.5 text-on-surface font-label-bold uppercase text-xs hover:text-primary hover:bg-surface-container-low transition-colors border-b border-surface-variant">Wassergymnastik</a>
-              <a href="#" className="block px-4 py-2.5 text-on-surface font-label-bold uppercase text-xs hover:text-primary hover:bg-surface-container-low transition-colors">Wandern</a>
+              <Link href="/radfahren" className={`block px-4 py-2.5 font-label-bold uppercase text-xs transition-colors border-b border-surface-variant ${current === "radfahren" ? "text-primary bg-surface-container-low" : "text-on-surface hover:text-primary hover:bg-surface-container-low"}`} aria-current={current === "radfahren" ? "page" : undefined}>Radfahren</Link>
+              <Link href="/yoga" className={`block px-4 py-2.5 font-label-bold uppercase text-xs transition-colors border-b border-surface-variant ${current === "yoga" ? "text-primary bg-surface-container-low" : "text-on-surface hover:text-primary hover:bg-surface-container-low"}`} aria-current={current === "yoga" ? "page" : undefined}>Yoga</Link>
+              <Link href="/pilates" className={`block px-4 py-2.5 font-label-bold uppercase text-xs transition-colors border-b border-surface-variant ${current === "pilates" ? "text-primary bg-surface-container-low" : "text-on-surface hover:text-primary hover:bg-surface-container-low"}`} aria-current={current === "pilates" ? "page" : undefined}>Pilates</Link>
+              <Link href="/wassergymnastik" className={`block px-4 py-2.5 font-label-bold uppercase text-xs transition-colors border-b border-surface-variant ${current === "wassergymnastik" ? "text-primary bg-surface-container-low" : "text-on-surface hover:text-primary hover:bg-surface-container-low"}`} aria-current={current === "wassergymnastik" ? "page" : undefined}>Wassergymnastik</Link>
+              <Link href="/wandern" className={`block px-4 py-2.5 font-label-bold uppercase text-xs transition-colors ${current === "wandern" ? "text-primary bg-surface-container-low" : "text-on-surface hover:text-primary hover:bg-surface-container-low"}`} aria-current={current === "wandern" ? "page" : undefined}>Wandern</Link>
             </div>
           </div>
 
