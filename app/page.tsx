@@ -237,8 +237,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Social Media */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+        {/* Social Media – hidden: Verein hat aktuell keine Social-Media-Kanäle */}
+        <section className="hidden grid-cols-1 md:grid-cols-3 gap-gutter">
           <div className="md:col-span-1 bg-surface-container-lowest border border-surface-container-highest rounded-lg p-md shadow-ambient">
             <h2 className="font-headline-lg text-headline-lg text-on-background flex items-center mb-sm">
               <span className="material-symbols-outlined mr-sm text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>share</span>
