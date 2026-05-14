@@ -93,13 +93,19 @@ export default function YogaPage() {
               </div>
             </div>
             <div className="border-t border-surface-container-high pt-md">
-              <p className="text-sm text-secondary font-body-md leading-relaxed">
-                Fragen zur Stunde? Wende dich an den Vereinsvorstand oder melde dich direkt im Training.
-              </p>
-              <a href="mailto:oliver.knieling@scunna.de" className="inline-flex items-center gap-xs text-primary text-xs font-label-bold uppercase hover:underline mt-sm">
-                <span className="material-symbols-outlined text-sm">mail</span>
-                Kontakt Vorstand
-              </a>
+              <p className="font-label-bold text-[10px] uppercase tracking-wider text-primary mb-xs">Ansprechpartnerin</p>
+              <p className="font-extrabold text-on-background text-sm">Anne Hentrich</p>
+              <p className="text-xs text-secondary mb-sm">Vorstand Sport Club Unna e.V.</p>
+              <div className="flex flex-wrap gap-sm">
+                <a href="tel:+4915224822743" className="inline-flex items-center gap-xs text-primary text-xs font-label-bold uppercase hover:underline">
+                  <span className="material-symbols-outlined text-sm">phone</span>
+                  0152 / 24822743
+                </a>
+                <a href="mailto:anne.hentrich@scunna.de" className="inline-flex items-center gap-xs text-primary text-xs font-label-bold uppercase hover:underline">
+                  <span className="material-symbols-outlined text-sm">mail</span>
+                  anne.hentrich@scunna.de
+                </a>
+              </div>
             </div>
           </div>
         </section>

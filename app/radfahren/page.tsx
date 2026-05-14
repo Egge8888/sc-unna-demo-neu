@@ -93,6 +93,25 @@ export default function RadfahrenPage() {
           </div>
         </section>
 
+        {/* Ansprechpartnerin */}
+        <section className="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient flex items-start gap-md">
+          <span className="material-symbols-outlined text-primary text-2xl flex-shrink-0">contact_support</span>
+          <div className="flex-1">
+            <p className="font-label-bold text-[10px] uppercase tracking-wider text-primary mb-xs">Ansprechpartnerin</p>
+            <p className="font-extrabold text-on-background text-sm mb-xs">Anne Hentrich</p>
+            <p className="text-xs text-secondary mb-sm">Vorstand Sport Club Unna e.V.</p>
+            <div className="flex flex-wrap gap-sm">
+              <a href="tel:+4915224822743" className="inline-flex items-center gap-xs text-primary text-xs font-label-bold uppercase hover:underline">
+                <span className="material-symbols-outlined text-sm">phone</span>
+                0152 / 24822743
+              </a>
+              <a href="mailto:anne.hentrich@scunna.de" className="inline-flex items-center gap-xs text-primary text-xs font-label-bold uppercase hover:underline">
+                <span className="material-symbols-outlined text-sm">mail</span>
+                anne.hentrich@scunna.de
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>

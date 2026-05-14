@@ -79,12 +79,27 @@ export default function PilatesPage() {
               </div>
             </div>
 
-            <div className="bg-surface-container-low border border-dashed border-surface-container-highest rounded-xl p-md flex items-start gap-sm">
-              <span className="material-symbols-outlined text-secondary text-xl flex-shrink-0 mt-0.5">info</span>
-              <p className="text-sm text-secondary font-body-md leading-relaxed">
-                Weitere Details (Ferienplan, Anmeldung) im{" "}
-                <a href="/aktuelles" className="text-primary hover:underline font-label-bold">Bereich Aktuelles</a>.
-              </p>
+            <div className="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient">
+              <p className="text-[10px] font-label-bold text-primary uppercase tracking-wider mb-sm">Ansprechpartnerin</p>
+              <div className="flex items-center gap-sm mb-md">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span className="font-extrabold text-primary text-sm">AH</span>
+                </div>
+                <div>
+                  <p className="font-extrabold text-on-background text-sm">Anne Hentrich</p>
+                  <p className="text-xs text-secondary">Vorstand Sport Club Unna e.V.</p>
+                </div>
+              </div>
+              <div className="space-y-xs">
+                <a href="tel:+4915224822743" className="inline-flex items-center gap-xs text-primary text-xs font-label-bold uppercase hover:underline">
+                  <span className="material-symbols-outlined text-sm">phone</span>
+                  0152 / 24822743
+                </a>
+                <a href="mailto:anne.hentrich@scunna.de" className="inline-flex items-center gap-xs text-primary text-xs font-label-bold uppercase hover:underline">
+                  <span className="material-symbols-outlined text-sm">mail</span>
+                  anne.hentrich@scunna.de
+                </a>
+              </div>
             </div>
           </div>
         </section>
