@@ -20,7 +20,7 @@ export default function RadfahrenPage() {
         {/* Hero */}
         <section className="relative rounded-xl overflow-hidden" style={{ height: "340px" }}>
           <img
-            src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80"
+            src="https://images.unsplash.com/photo-1778655726656-299707575200?auto=format&fit=crop&w=1600&q=80"
             alt="Radfahren"
             className="w-full h-full object-cover"
           />
