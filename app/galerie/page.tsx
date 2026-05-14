@@ -1,46 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { allAlben } from "@/lib/galerie-data";
 
 export const metadata: Metadata = { title: "Fotogalerie" };
-
-type Album = {
-  title: string;
-  date: string;
-  fotoAnzahl: number;
-  coverUrl: string;
-  flickrUrl: string;
-  beschreibung?: string;
-};
-
-// Seed-Daten: 3 aktuellste Alben von flickr.com/photos/148750664@N03/albums
-// Wird später durch Sanity-Dokumente ersetzt
-const alben: Album[] = [
-  {
-    title: "\"Los geht's Skifoan\" 2018",
-    date: "November 2018",
-    fotoAnzahl: 22,
-    coverUrl: "https://live.staticflickr.com/4859/46285066392_319fed6487_z.jpg",
-    flickrUrl: "https://www.flickr.com/photos/148750664@N03/albums/72157674561357557",
-    beschreibung: "Eindrücke von der Skifreizeit des Ski-Clubs Unna 2018.",
-  },
-  {
-    title: "Sommerfest 2018",
-    date: "Sommer 2018",
-    fotoAnzahl: 19,
-    coverUrl: "https://live.staticflickr.com/1822/42515880585_be2a86e2cb_z.jpg",
-    flickrUrl: "https://www.flickr.com/photos/148750664@N03/albums/72157671196011278",
-    beschreibung: "Sommerfest im Bornekampbad — Spaß, Sport und Geselligkeit.",
-  },
-  {
-    title: "Skischleifen 2017",
-    date: "November 2017",
-    fotoAnzahl: 10,
-    coverUrl: "https://live.staticflickr.com/802/26025705287_d0e1539e41.jpg",
-    flickrUrl: "https://www.flickr.com/photos/148750664@N03/albums/72157688947368050",
-    beschreibung: "Training und Spaß beim Skischleifen der Skiabteilung.",
-  },
-];
 
 export default function GaleriePage() {
   return (
@@ -60,12 +24,10 @@ export default function GaleriePage() {
         <section>
           <p className="font-label-bold text-primary uppercase tracking-wider text-[10px] mb-md">Fotoalben</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-            {alben.map((album) => (
-              <a
-                key={album.flickrUrl}
-                href={album.flickrUrl}
-                target="_blank"
-                rel="noopener"
+            {allAlben.map((album) => (
+              <Link
+                key={album.slug}
+                href={`/galerie/${album.slug}`}
                 className="group bg-surface-container-lowest border border-surface-container-highest rounded-xl overflow-hidden shadow-ambient hover:shadow-lg transition-shadow flex flex-col"
               >
                 {/* Cover-Bild */}
@@ -90,11 +52,11 @@ export default function GaleriePage() {
                     <p className="text-sm text-secondary font-body-md leading-relaxed flex-1">{album.beschreibung}</p>
                   )}
                   <div className="mt-md pt-md border-t border-surface-container-high flex items-center gap-xs text-primary font-label-bold text-xs uppercase tracking-wider">
-                    <span className="material-symbols-outlined text-sm">open_in_new</span>
-                    Album auf Flickr ansehen
+                    <span className="material-symbols-outlined text-sm">photo_library</span>
+                    Album ansehen
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </section>
@@ -107,9 +69,9 @@ export default function GaleriePage() {
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-md">
             <div>
               <p className="font-label-bold text-[10px] uppercase tracking-widest opacity-80 mb-xs">Vollständiges Fotoarchiv</p>
-              <h2 className="font-headline-lg text-on-primary">Alle Alben auf Flickr</h2>
+              <h2 className="font-headline-lg text-on-primary">Weitere Alben auf Flickr</h2>
               <p className="font-body-md opacity-85 mt-xs">
-                Skifreizeiten, Sommerfeste, Wandertouren und mehr — das komplette Vereinsarchiv.
+                Alle weiteren Alben — Skifreizeiten, Sommerfeste, Wandertouren — im vollständigen Flickr-Archiv.
               </p>
             </div>
             <a
