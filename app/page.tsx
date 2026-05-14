@@ -144,40 +144,46 @@ export default function HomePage() {
                 <span className="material-symbols-outlined mr-sm text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>sports_gymnastics</span>
                 Unser Sportangebot
               </h2>
-              <p className="font-body-md text-secondary mt-xs">Die Abteilungen des Sport Club Unna e.V. als kompakte Übersicht.</p>
+              <p className="font-body-md text-secondary mt-xs">Unsere zwei Abteilungen und vielfältige Sportangebote im Überblick.</p>
             </div>
-            <a href="#" className="font-label-bold text-label-bold text-primary uppercase flex items-center gap-xs hover:underline">
-              Alle Abteilungen <span className="material-symbols-outlined text-base">arrow_forward</span>
+            <a href="#" className="font-label-bold text-label-bold text-primary uppercase flex items-center gap-xs hover:underline whitespace-nowrap">
+              Sportl. Aktivitäten <span className="material-symbols-outlined text-base">arrow_forward</span>
             </a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-sm">
             <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">downhill_skiing</span>
-              <div><h3 className="font-label-bold text-on-background uppercase">Ski</h3><p className="font-body-md text-xs text-secondary">Freizeiten</p></div>
+              <div>
+                <span className="inline-block bg-primary text-on-primary font-label-bold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded mb-1">Abteilung</span>
+                <h3 className="font-label-bold text-on-background uppercase">Ski</h3>
+              </div>
             </a>
-            <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+            <a href="/badminton" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">sports_tennis</span>
-              <div><h3 className="font-label-bold text-on-background uppercase">Badminton</h3><p className="font-body-md text-xs text-secondary">Halle</p></div>
+              <div>
+                <span className="inline-block bg-primary text-on-primary font-label-bold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded mb-1">Abteilung</span>
+                <h3 className="font-label-bold text-on-background uppercase">Badminton</h3>
+              </div>
             </a>
             <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">directions_bike</span>
-              <div><h3 className="font-label-bold text-on-background uppercase">Radfahren</h3><p className="font-body-md text-xs text-secondary">Touren</p></div>
+              <div><h3 className="font-label-bold text-on-background uppercase">Radfahren</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
             </a>
-            <a href="#" className="bg-primary text-on-primary rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:opacity-90 transition-opacity">
-              <span className="material-symbols-outlined text-3xl">self_improvement</span>
-              <div><h3 className="font-label-bold uppercase">Yoga</h3><p className="font-body-md text-xs opacity-80">Balance</p></div>
+            <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
+              <span className="material-symbols-outlined text-3xl text-primary">self_improvement</span>
+              <div><h3 className="font-label-bold text-on-background uppercase">Yoga</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
             </a>
             <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">fitness_center</span>
-              <div><h3 className="font-label-bold text-on-background uppercase">Pilates</h3><p className="font-body-md text-xs text-secondary">Kraft</p></div>
+              <div><h3 className="font-label-bold text-on-background uppercase">Pilates</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
             </a>
             <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">pool</span>
-              <div><h3 className="font-label-bold text-on-background uppercase">Wassergymnastik</h3><p className="font-body-md text-xs text-secondary">Schonend aktiv</p></div>
+              <div><h3 className="font-label-bold text-on-background uppercase">Wassergymnastik</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
             </a>
             <a href="#" className="bg-surface-container rounded-lg p-sm min-h-[120px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
               <span className="material-symbols-outlined text-3xl text-primary">hiking</span>
-              <div><h3 className="font-label-bold text-on-background uppercase">Wandern</h3><p className="font-body-md text-xs text-secondary">Touren</p></div>
+              <div><h3 className="font-label-bold text-on-background uppercase">Wandern</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
             </a>
             <a href="#" className="bg-on-background text-on-primary rounded-lg p-sm min-h-[120px] flex flex-col justify-center gap-xs">
               <span className="material-symbols-outlined text-3xl text-primary">arrow_forward</span>
