@@ -7,9 +7,18 @@ export type Termin = {
   location?: string;
   category: "ski" | "sommer" | "social" | "vereins" | "sport";
   description?: string;
+  recurring?: boolean; // Dauereintrag ohne festes Datum — nie als "vergangen" markiert
 };
 
 export const allTermine: Termin[] = [
+  {
+    id: "radeltouren-samstags",
+    title: "Radeltouren",
+    startDate: "2099-01-01", // Dummy — wird nicht angezeigt (recurring: true)
+    category: "sport",
+    description: "Kurzfristige Ankündigung über WhatsApp — einfach beim Vorstand für den Verteiler melden.",
+    recurring: true,
+  },
   {
     id: "bowling-2025",
     title: "Bowling-Abend",
@@ -126,6 +135,7 @@ export function categoryLabel(cat: Termin["category"]) { return CATEGORY_LABEL[c
 export function categoryColor(cat: Termin["category"]) { return CATEGORY_COLOR[cat]; }
 
 export function isPast(t: Termin): boolean {
+  if (t.recurring) return false;
   const ref = t.endDate ?? t.startDate;
   return ref < "2026-05-14";
 }

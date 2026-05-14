@@ -19,8 +19,19 @@ function DateBadge({ iso }: { iso: string }) {
   );
 }
 
+function RecurringBadge() {
+  return (
+    <div className="bg-surface-container-highest rounded-lg p-sm text-center min-w-[56px] flex-shrink-0">
+      <span className="material-symbols-outlined text-primary text-xl leading-none block">repeat</span>
+      <span className="block text-secondary text-xs font-label-bold uppercase leading-tight mt-0.5">Sa.</span>
+      <span className="block text-secondary text-[10px]">Bedarf</span>
+    </div>
+  );
+}
+
 export default function TerminePage() {
-  const upcoming = allTermine.filter((t) => !isPast(t));
+  const recurring = allTermine.filter((t) => t.recurring);
+  const upcoming = allTermine.filter((t) => !isPast(t) && !t.recurring);
   const past = allTermine.filter((t) => isPast(t)).reverse();
 
   return (
@@ -47,6 +58,30 @@ export default function TerminePage() {
           )}
 
           <div className="space-y-xs">
+            {recurring.map((t) => (
+              <div key={t.id} className="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient flex gap-md items-start">
+                <RecurringBadge />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-sm flex-wrap mb-xs">
+                    <span className={`text-[10px] font-label-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${categoryColor(t.category)}`}>
+                      {categoryLabel(t.category)}
+                    </span>
+                    <span className="text-[10px] font-label-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-surface-container text-secondary">
+                      Dauereintrag
+                    </span>
+                  </div>
+                  <h3 className="font-extrabold text-on-background text-base leading-snug">{t.title}</h3>
+                  <p className="text-sm text-secondary font-body-md mt-0.5 flex items-center gap-xs">
+                    <span className="material-symbols-outlined text-xs">calendar_today</span>
+                    Samstags bei Bedarf
+                  </p>
+                  <p className="text-sm text-secondary font-body-md mt-sm flex items-center gap-xs">
+                    <span className="material-symbols-outlined text-xs">chat</span>
+                    Kurzfristige Ankündigung über WhatsApp — beim Vorstand für den Verteiler melden.
+                  </p>
+                </div>
+              </div>
+            ))}
             {upcoming.map((t) => (
               <div key={t.id} className="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient flex gap-md items-start">
                 <DateBadge iso={t.startDate} />
