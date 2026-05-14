@@ -34,7 +34,7 @@ export default function GaleriePage() {
           <div className="relative z-10">
             <p className="font-label-bold text-[10px] uppercase tracking-widest opacity-80 mb-sm">Fotoarchiv</p>
             <h2 className="font-headline-lg text-on-primary mb-sm">Vollständige Bildergalerie auf Flickr</h2>
-            <p className="font-body-md opacity-90 mb-md max-w-xl">
+            <p className="font-body-md opacity-90 mb-md max-w-[600px]">
               Das komplette Fotoarchiv des Vereins findest du auf unserem Flickr-Album. Dort sind alle Bilder aus Skifreizeiten, Sommerreisen und Vereinsveranstaltungen gesammelt.
             </p>
             <a
