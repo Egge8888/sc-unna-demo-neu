@@ -73,19 +73,19 @@ export default function SkiPage() {
         {/* Hero */}
         <section className="relative rounded-xl overflow-hidden" style={{ height: "380px" }}>
           <img
-            src="https://images.unsplash.com/photo-1452570053594-1b985d6ea890?auto=format&fit=crop&w=1600&q=80"
+            src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?auto=format&fit=crop&w=1600&q=80"
             alt="Skifahren in den Alpen"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 p-md md:p-lg">
+          <div className="absolute bottom-0 left-0 p-md md:p-lg max-w-3xl">
             <span className="inline-block bg-primary text-on-primary font-label-bold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full mb-sm">
               Abteilung
             </span>
             <h1 className="font-display-xl text-display-xl text-white leading-tight mb-xs">
               Ski &amp; Wintersport
             </h1>
-            <p className="font-body-lg text-white/80 max-w-xl">
+            <p className="font-body-lg text-white/80">
               Seit 1963 organisiert die Ski-Abteilung des SC Unna e.V. unvergessliche Freizeiten und verbindet Sportbegeisterung mit Gemeinschaft.
             </p>
           </div>
