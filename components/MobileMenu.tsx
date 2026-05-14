@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type NavPage = "home" | "aktuelles" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "ski" | "badminton" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
 
 export default function MobileMenu({ current = "" }: { current?: NavPage }) {
   const [open, setOpen] = useState(false);
@@ -39,7 +39,7 @@ export default function MobileMenu({ current = "" }: { current?: NavPage }) {
             <Link href="/badminton" className={`block px-md py-sm font-body-md text-sm transition-colors border-t border-surface-container-high ${current === "badminton" ? "text-primary" : "text-on-surface hover:text-primary"}`} onClick={close}>
               Badminton
             </Link>
-            <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Ski / Wintersport</a>
+            <Link href="/ski" className={`block px-md py-sm font-body-md text-sm transition-colors border-t border-surface-container-high ${current === "ski" ? "text-primary" : "text-on-surface hover:text-primary"}`} onClick={close}>Ski / Wintersport</Link>
             <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Radfahren</a>
             <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Yoga</a>
             <a href="#" className="block px-md py-sm font-body-md text-sm text-secondary border-t border-surface-container-high" onClick={close}>Pilates</a>

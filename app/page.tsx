@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -17,8 +18,9 @@ export default function HomePage() {
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
           {/* Left: 2 stacked tiles */}
           <div className="flex flex-col gap-sm">
-            <div
-              className="relative rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group cursor-pointer"
+            <Link
+              href="/ski"
+              className="relative rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group"
               style={{ height: "240px" }}
             >
               <img
@@ -29,9 +31,10 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-md">
                 <h3 className="font-headline-md text-headline-md text-on-primary">Ski / Wintersport</h3>
               </div>
-            </div>
-            <div
-              className="relative rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group cursor-pointer"
+            </Link>
+            <Link
+              href="/badminton"
+              className="relative rounded-xl overflow-hidden bg-surface-container shadow-ambient shadow-ambient-hover transition-all group"
               style={{ height: "240px" }}
             >
               <img
@@ -42,7 +45,7 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-md">
                 <h3 className="font-headline-md text-headline-md text-on-primary">Badminton</h3>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* Right: Club Info */}
