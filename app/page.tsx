@@ -205,8 +205,8 @@ export default function HomePage() {
             <ul className="space-y-sm divide-y divide-surface-container-highest">
               <li className="py-sm flex items-start gap-sm">
                 <div className="bg-surface-container-highest rounded p-xs text-center min-w-[50px]">
-                  <span className="block font-label-bold text-label-bold text-primary">15</span>
-                  <span className="block font-body-md text-body-md text-secondary text-sm">Okt</span>
+                  <span className="block font-label-bold text-label-bold text-primary">28</span>
+                  <span className="block font-body-md text-body-md text-secondary text-sm">Jun</span>
                 </div>
                 <div>
                   <p className="font-label-bold text-label-bold text-on-background">Sommerfreizeit Zell am See</p>
@@ -215,8 +215,8 @@ export default function HomePage() {
               </li>
               <li className="py-sm flex items-start gap-sm">
                 <div className="bg-surface-container-highest rounded p-xs text-center min-w-[50px]">
-                  <span className="block font-label-bold text-label-bold text-primary">22</span>
-                  <span className="block font-body-md text-body-md text-secondary text-sm">Okt</span>
+                  <span className="block font-label-bold text-label-bold text-primary">09</span>
+                  <span className="block font-body-md text-body-md text-secondary text-sm">Jan</span>
                 </div>
                 <div>
                   <p className="font-label-bold text-label-bold text-on-background">Skifreizeit Zell am See 2027</p>
@@ -225,18 +225,18 @@ export default function HomePage() {
               </li>
               <li className="py-sm flex items-start gap-sm">
                 <div className="bg-surface-container-highest rounded p-xs text-center min-w-[50px]">
-                  <span className="block font-label-bold text-label-bold text-primary">05</span>
-                  <span className="block font-body-md text-body-md text-secondary text-sm">Nov</span>
+                  <span className="block font-label-bold text-label-bold text-primary">16</span>
+                  <span className="block font-body-md text-body-md text-secondary text-sm">Jan</span>
                 </div>
                 <div>
-                  <p className="font-label-bold text-label-bold text-on-background">BUS-Skifreizeit St. Ulrich</p>
+                  <p className="font-label-bold text-label-bold text-on-background">Bus-Skifreizeit St. Ulrich</p>
                   <p className="font-body-md text-body-md text-secondary text-sm">16.–23.01.2027</p>
                 </div>
               </li>
             </ul>
-            <button className="mt-md w-full border border-surface-container-highest text-on-background font-label-bold text-label-bold py-sm rounded hover:bg-surface-container transition-colors">
+            <Link href="/termine" className="mt-md w-full border border-surface-container-highest text-on-background font-label-bold text-label-bold py-sm rounded hover:bg-surface-container transition-colors block text-center">
               Alle Termine
-            </button>
+            </Link>
           </div>
         </section>
 

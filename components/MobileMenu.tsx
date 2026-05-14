@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type NavPage = "home" | "aktuelles" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "termine" | "freizeiten" | "galerie" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
 
 export default function MobileMenu({ current = "" }: { current?: NavPage }) {
   const [open, setOpen] = useState(false);
@@ -48,11 +48,11 @@ export default function MobileMenu({ current = "" }: { current?: NavPage }) {
           </div>
 
           <Link href="/aktuelles" className={linkClass(current === "aktuelles")} onClick={close}>Aktuelles</Link>
-          <a href="#" className={linkClass(false)} onClick={close}>Termine</a>
+          <Link href="/termine" className={linkClass(current === "termine")} onClick={close}>Termine</Link>
           <Link href="/vorstand" className={linkClass(current === "vorstand")} onClick={close}>Vorstand</Link>
-          <a href="#" className={linkClass(false)} onClick={close}>Freizeiten</a>
+          <Link href="/freizeiten" className={linkClass(current === "freizeiten")} onClick={close}>Freizeiten</Link>
           <Link href="/stammtisch" className={linkClass(current === "stammtisch")} onClick={close}>Stammtisch</Link>
-          <a href="#" className={linkClass(false)} onClick={close}>Galerie</a>
+          <Link href="/galerie" className={linkClass(current === "galerie")} onClick={close}>Galerie</Link>
           <Link href="/impressum" className={linkClass(current === "impressum")} onClick={close}>Impressum</Link>
 
           <div className="p-md">

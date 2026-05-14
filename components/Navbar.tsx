@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
 
-type NavPage = "home" | "aktuelles" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "termine" | "freizeiten" | "galerie" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
 
 export default function Navbar({ current = "" }: { current?: NavPage }) {
   const link = (page: NavPage, always = false) =>
@@ -70,11 +70,11 @@ export default function Navbar({ current = "" }: { current?: NavPage }) {
           </div>
 
           <Link className={link("aktuelles")} href="/aktuelles" aria-current={current === "aktuelles" ? "page" : undefined}>Aktuelles</Link>
-          <a className={link("")} href="#">Termine</a>
+          <Link className={link("termine")} href="/termine" aria-current={current === "termine" ? "page" : undefined}>Termine</Link>
           <Link className={link("vorstand")} href="/vorstand" aria-current={current === "vorstand" ? "page" : undefined}>Vorstand</Link>
-          <a className={link("")} href="#">Freizeiten</a>
+          <Link className={link("freizeiten")} href="/freizeiten" aria-current={current === "freizeiten" ? "page" : undefined}>Freizeiten</Link>
           <Link className={link("stammtisch")} href="/stammtisch" aria-current={current === "stammtisch" ? "page" : undefined}>Stammtisch</Link>
-          <a className={link("")} href="#">Galerie</a>
+          <Link className={link("galerie")} href="/galerie" aria-current={current === "galerie" ? "page" : undefined}>Galerie</Link>
           <Link className={link("impressum")} href="/impressum">Impressum</Link>
         </div>
 
