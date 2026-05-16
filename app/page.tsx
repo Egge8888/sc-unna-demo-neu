@@ -112,9 +112,9 @@ export default function HomePage() {
               Willkommen beim Sport Club Unna e.V. Wir verbinden sportliche Höchstleistung mit einer starken Gemeinschaft. Entdecke unser vielfältiges Sportangebot.
             </p>
             <div className="flex space-x-md">
-              <button className="bg-primary text-on-primary font-label-bold text-label-bold py-sm px-lg rounded hover:opacity-90 transition-opacity">
+              <Link href="/mitglied-werden" className="bg-primary text-on-primary font-label-bold text-label-bold py-sm px-lg rounded hover:opacity-90 transition-opacity">
                 Mitglied werden
-              </button>
+              </Link>
               <button className="border-2 border-on-background text-on-background font-label-bold text-label-bold py-sm px-lg rounded hover:bg-surface-container transition-colors">
                 Mehr erfahren
               </button>
@@ -192,9 +192,6 @@ export default function HomePage() {
               </h2>
               <p className="font-body-md text-secondary mt-xs">Unsere zwei Abteilungen und vielfältige Sportangebote im Überblick.</p>
             </div>
-            <a href="#" className="font-label-bold text-label-bold text-primary uppercase flex items-center gap-xs hover:underline whitespace-nowrap">
-              Sportl. Aktivitäten <span className="material-symbols-outlined text-base">arrow_forward</span>
-            </a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-sm">
             <Link href="/ski" className="bg-surface-container rounded-lg p-sm min-h-[130px] flex flex-col justify-between hover:bg-primary/10 transition-colors">
@@ -231,10 +228,6 @@ export default function HomePage() {
               <span className="material-symbols-outlined text-3xl text-primary">hiking</span>
               <div><h3 className="font-label-bold text-on-background uppercase">Wandern</h3><p className="font-body-md text-xs text-secondary">Sportl. Aktivität</p></div>
             </Link>
-            <a href="#" className="bg-on-background text-on-primary rounded-lg p-sm min-h-[120px] flex flex-col justify-center gap-xs">
-              <span className="material-symbols-outlined text-3xl text-primary">arrow_forward</span>
-              <span className="font-label-bold uppercase text-xs">Übersicht</span>
-            </a>
           </div>
         </section>
 
@@ -334,10 +327,10 @@ export default function HomePage() {
             <div className="relative z-10">
               <span className="bg-on-primary text-primary font-label-bold text-[10px] uppercase tracking-widest px-2 py-1 rounded mb-3 inline-block">Mitmachen</span>
               <h3 className="font-display-xl text-2xl uppercase mb-sm leading-tight">Mitglied<br />werden</h3>
-              <p className="font-body-md text-sm mb-md opacity-90">Werde Teil unserer Community. Formular runterladen, ausfüllen, absenden.</p>
-              <a href="/dokumente/beitrittserklaerung-2026.pdf" target="_blank" className="bg-on-primary text-primary px-4 py-2 font-label-bold uppercase text-xs rounded hover:opacity-90 inline-flex items-center gap-2">
-                Beitrittserklärung <span className="material-symbols-outlined text-base">download</span>
-              </a>
+              <p className="font-body-md text-sm mb-md opacity-90">Werde Teil unserer Community. Jetzt online anmelden — schnell und unkompliziert.</p>
+              <Link href="/mitglied-werden" className="bg-on-primary text-primary px-4 py-2 font-label-bold uppercase text-xs rounded hover:opacity-90 inline-flex items-center gap-2">
+                Online anmelden <span className="material-symbols-outlined text-base">arrow_forward</span>
+              </Link>
             </div>
           </div>
           <div className="md:col-span-2 bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient">
