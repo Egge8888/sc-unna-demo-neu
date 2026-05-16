@@ -79,9 +79,9 @@ export default function Navbar({ current = "" }: { current?: NavPage }) {
         </div>
 
         <div className="flex items-center gap-2 flex-shrink-0">
-          <button className="bg-primary text-on-primary font-label-bold text-label-bold py-2 px-5 rounded hover:opacity-90 transition-opacity hidden md:block whitespace-nowrap text-xs">
+          <Link href="/mitglied-werden" className="bg-primary text-on-primary font-label-bold text-label-bold py-2 px-5 rounded hover:opacity-90 transition-opacity hidden md:block whitespace-nowrap text-xs">
             Mitglied werden
-          </button>
+          </Link>
           <MobileMenu current={current} />
         </div>
       </div>

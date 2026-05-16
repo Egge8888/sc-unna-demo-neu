@@ -56,9 +56,9 @@ export default function MobileMenu({ current = "" }: { current?: NavPage }) {
           <Link href="/impressum" className={linkClass(current === "impressum")} onClick={close}>Impressum</Link>
 
           <div className="p-md">
-            <button className="w-full bg-primary text-on-primary font-label-bold text-label-bold py-sm rounded hover:opacity-90 transition-opacity text-xs">
+            <Link href="/mitglied-werden" onClick={close} className="block w-full bg-primary text-on-primary font-label-bold text-label-bold py-sm rounded hover:opacity-90 transition-opacity text-xs text-center">
               Mitglied werden
-            </button>
+            </Link>
           </div>
         </div>
       )}
