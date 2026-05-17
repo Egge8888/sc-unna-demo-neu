@@ -104,8 +104,8 @@ export default function HomePage() {
               <h1 className="font-display-xl text-display-xl text-on-background leading-tight mb-xs">
                 Sport Club Unna e.V.
               </h1>
-              <p className="font-label-bold text-label-bold text-primary uppercase tracking-wider">
-                Seit 1963 · Ski · Badminton · Yoga · Wandern
+              <p className="font-label-bold text-label-bold text-primary uppercase tracking-wider text-center">
+                Seit 1963 · Fusion 2026
               </p>
             </div>
             <p className="font-body-lg text-body-lg text-secondary">
