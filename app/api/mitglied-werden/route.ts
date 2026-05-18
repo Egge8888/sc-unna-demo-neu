@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       // Mitglied
       geburtsdatum, strasse, plz, ort, sportangebote, beitragsart,
       // Freizeit
-      freizeit, zimmertyp, personenanzahl, kinderInfo, anmerkungen,
+      freizeit, zimmertyp, skipasOption, teilnehmer, anmerkungen,
       // SEPA
       iban, kreditinstitut, kontoinhaber, abbuchungAb,
       // Einwilligungen
@@ -84,11 +84,18 @@ export async function POST(req: NextRequest) {
 
     // ── Freizeit
     if (wantFreizeit) {
+      const teilnehmerList = Array.isArray(teilnehmer) && teilnehmer.length > 0
+        ? teilnehmer
+            .map((t: { vorname?: string; nachname?: string; geburtsdatum?: string }, i: number) =>
+              `${i + 1}. ${t.vorname ?? ""} ${t.nachname ?? ""}${t.geburtsdatum ? ` · geb. ${t.geburtsdatum}` : ""}`
+            )
+            .join("<br/>")
+        : null;
       htmlBody += section("Freizeit-Anmeldung", [
         row("Freizeit",         FREIZEIT_LABEL[freizeit] ?? freizeit),
         row("Zimmertyp",        zimmertyp),
-        row("Personen (Erw.)",  personenanzahl),
-        row("Kinder",           kinderInfo),
+        row("Skipass-Option",   skipasOption),
+        row("Teilnehmer",       teilnehmerList ? `${teilnehmer.length} Person(en):<br/>${teilnehmerList}` : null),
         row("Anmerkungen",      anmerkungen),
       ].join(""));
     }

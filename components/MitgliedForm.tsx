@@ -2,7 +2,98 @@
 
 import { useState } from "react";
 
-// ── Daten aus PDFs ───────────────────────────────────────────────────────────
+// ── Preiskalkulations-Typen ───────────────────────────────────────────────────
+
+type SkipasOpt    = { id: string; label: string; preis: number };
+type KindBracket  = { bisAlter: number; preis: number; label: string };
+
+type FreizeitPricing = {
+  referenzDatum: string;
+  kinderBrackets: KindBracket[] | null;
+  kinderHinweis?: string;
+  skipasOptionen?: SkipasOpt[];
+  dzPreis?: number;
+  ezPreis?: number;
+  ezZuschlag?: number;
+  seniorBisJahrgang?: number;
+  seniorDzPreis?: number;
+  seniorEzPreis?: number;
+};
+
+type PriceResult = {
+  kategorie: string;
+  preis: number;
+  hinweis?: string;
+  keinAnzahlung: boolean;
+};
+
+function berechnePersPreis(
+  geburtsdatum: string,
+  pricing: FreizeitPricing,
+  zimmertyp: string,
+  skipasOptionId: string
+): PriceResult | null {
+  if (!geburtsdatum) return null;
+  const geb = new Date(geburtsdatum);
+  if (isNaN(geb.getTime())) return null;
+
+  const ref = new Date(pricing.referenzDatum);
+  let alter = ref.getFullYear() - geb.getFullYear();
+  const m = ref.getMonth() - geb.getMonth();
+  if (m < 0 || (m === 0 && ref.getDate() < geb.getDate())) alter--;
+
+  const isEZ = zimmertyp === "EZ";
+  if (zimmertyp === "Appartement") return null; // Preis auf Anfrage
+
+  // Kinderpreis-Tabelle
+  if (pricing.kinderBrackets && alter <= 14) {
+    for (const b of pricing.kinderBrackets) {
+      if (alter <= b.bisAlter) {
+        return { kategorie: b.label, preis: b.preis, keinAnzahlung: alter <= 2 };
+      }
+    }
+  }
+
+  // Kein Kinderpreis (St. Ulrich) → Hinweis
+  if (!pricing.kinderBrackets && alter < 15) {
+    return {
+      kategorie: `Kind (${alter} J.)`,
+      preis: 0,
+      hinweis: pricing.kinderHinweis,
+      keinAnzahlung: alter <= 2,
+    };
+  }
+
+  // Senior
+  if (pricing.seniorBisJahrgang && geb.getFullYear() <= pricing.seniorBisJahrgang) {
+    const preis = isEZ ? (pricing.seniorEzPreis ?? 0) : (pricing.seniorDzPreis ?? 0);
+    return {
+      kategorie: `Senior (Jg. ${geb.getFullYear()}) · ${isEZ ? "EZ" : "DZ"}`,
+      preis,
+      keinAnzahlung: false,
+    };
+  }
+
+  // Skipass-Optionen (Zell Jan)
+  if (pricing.skipasOptionen?.length) {
+    const opt =
+      pricing.skipasOptionen.find((o) => o.id === skipasOptionId) ??
+      pricing.skipasOptionen[0];
+    let preis = opt.preis;
+    let label = `Erwachsen · ${opt.label}`;
+    if (isEZ && pricing.ezZuschlag) {
+      preis += pricing.ezZuschlag;
+      label += ` + EZ (${pricing.ezZuschlag} €)`;
+    }
+    return { kategorie: label, preis, keinAnzahlung: false };
+  }
+
+  // Erwachsen regulär
+  const preis = isEZ ? (pricing.ezPreis ?? pricing.dzPreis ?? 0) : (pricing.dzPreis ?? 0);
+  return { kategorie: `Erwachsen · ${isEZ ? "EZ" : "DZ"}`, preis, keinAnzahlung: false };
+}
+
+// ── Vereinsdaten ──────────────────────────────────────────────────────────────
 
 const BEITRAEGE = [
   { id: "einzeln",    label: "Einzelmitglied (über 18 Jahre)",                 value: "50,00 €" },
@@ -22,7 +113,22 @@ const SPORTANGEBOTE = [
   { id: "wandern",         label: "Wandern",             icon: "hiking",           badge: null },
 ];
 
-const FREIZEITEN = [
+type FreizeitItem = {
+  id: string;
+  label: string;
+  datum: string;
+  ort: string;
+  anreise: string;
+  preise: { label: string; value: string }[];
+  kinderpreise: string | null;
+  anzahlung: string;
+  anmeldeschluss: string;
+  zimmerTypen: string[];
+  hasBus: boolean;
+  pricing: FreizeitPricing | null;
+};
+
+const FREIZEITEN: FreizeitItem[] = [
   {
     id: "skifreizeit-zell-2027",
     label: "Skifreizeit Zell am See – Jan. 2027",
@@ -30,16 +136,31 @@ const FREIZEITEN = [
     ort: "Sportresort Alpenblick, Zell am See / Kaprun",
     anreise: "Eigene Anreise",
     preise: [
-      { label: "DZ inkl. Skipass (6 Tage)",         value: "1.440 € p.P." },
-      { label: "DZ ohne Skipass",                    value: "1.010 € p.P." },
-      { label: "DZ mit Wanderpass 3in8",             value: "1.120 € p.P." },
-      { label: "EZ-Zuschlag",                        value: "+ 112 €" },
+      { label: "DZ inkl. Skipass (6 Tage)", value: "1.440 € p.P." },
+      { label: "DZ ohne Skipass",            value: "1.010 € p.P." },
+      { label: "DZ mit Wanderpass 3in8",     value: "1.120 € p.P." },
+      { label: "EZ-Zuschlag",               value: "+ 112 €" },
     ],
     kinderpreise: "0–2 J.: 100 € · 3–5 J.: 304 € · 6–11 J.: 720 € · 12–14 J.: 1.014 €",
     anzahlung: "200 € / Person",
     anmeldeschluss: "30. November 2026",
     zimmerTypen: ["DZ", "EZ", "Appartement"],
     hasBus: false,
+    pricing: {
+      referenzDatum: "2027-01-09",
+      kinderBrackets: [
+        { bisAlter: 2,  preis: 100,  label: "Kind 0–2 Jahre" },
+        { bisAlter: 5,  preis: 304,  label: "Kind 3–5 Jahre" },
+        { bisAlter: 11, preis: 720,  label: "Kind 6–11 Jahre" },
+        { bisAlter: 14, preis: 1014, label: "Kind 12–14 Jahre" },
+      ],
+      skipasOptionen: [
+        { id: "skipass",      label: "inkl. Skipass (6 Tage)", preis: 1440 },
+        { id: "ohne-skipass", label: "ohne Skipass",            preis: 1010 },
+        { id: "wanderpass",   label: "mit Wanderpass 3in8",     preis: 1120 },
+      ],
+      ezZuschlag: 112,
+    },
   },
   {
     id: "skifreizeit-st-ulrich-2027",
@@ -48,16 +169,27 @@ const FREIZEITEN = [
     ort: "Hotel Rodes, St. Ulrich im Grödnertal (Südtirol)",
     anreise: "Busanreise ab Unna, Parkplatz AOK – Abfahrt 15.01.2027 um 21:00 Uhr",
     preise: [
-      { label: "DZ Busanreise",                     value: "1.265 € p.P." },
-      { label: "DZ Busanreise (ab Jg. 1961)",       value: "1.225 € p.P." },
-      { label: "EZ Busanreise",                     value: "1.440 € p.P." },
-      { label: "EZ Busanreise (ab Jg. 1961)",       value: "1.400 € p.P." },
+      { label: "DZ Busanreise",               value: "1.265 € p.P." },
+      { label: "DZ Busanreise (ab Jg. 1961)", value: "1.225 € p.P." },
+      { label: "EZ Busanreise",               value: "1.440 € p.P." },
+      { label: "EZ Busanreise (ab Jg. 1961)", value: "1.400 € p.P." },
     ],
     kinderpreise: null,
     anzahlung: "200 € / Person",
     anmeldeschluss: "—",
     zimmerTypen: ["DZ", "EZ"],
     hasBus: true,
+    pricing: {
+      referenzDatum: "2027-01-16",
+      kinderBrackets: null,
+      kinderHinweis:
+        "Für Kinder bitte direkt Rainer Nordhaus kontaktieren: SCU@r-nordhaus.de · 0171‑7719531",
+      dzPreis: 1265,
+      ezPreis: 1440,
+      seniorBisJahrgang: 1961,
+      seniorDzPreis: 1225,
+      seniorEzPreis: 1400,
+    },
   },
   {
     id: "osterfreizeit-zell-2027",
@@ -66,14 +198,25 @@ const FREIZEITEN = [
     ort: "Sportresort Alpenblick, Zell am See",
     anreise: "Eigene Anreise",
     preise: [
-      { label: "DZ inkl. Skipass (5 Tage)",         value: "1.190 € p.P." },
-      { label: "EZ",                                 value: "1.310 € p.P." },
+      { label: "DZ inkl. Skipass (5 Tage)", value: "1.190 € p.P." },
+      { label: "EZ",                         value: "1.310 € p.P." },
     ],
     kinderpreise: "0–2 J.: 100 € · 3–5 J.: 240 € · 6–11 J.: 400 € · 12–14 J.: 640 €",
     anzahlung: "200 € / Person",
     anmeldeschluss: "—",
     zimmerTypen: ["DZ", "EZ", "Appartement"],
     hasBus: false,
+    pricing: {
+      referenzDatum: "2027-03-27",
+      kinderBrackets: [
+        { bisAlter: 2,  preis: 100, label: "Kind 0–2 Jahre" },
+        { bisAlter: 5,  preis: 240, label: "Kind 3–5 Jahre" },
+        { bisAlter: 11, preis: 400, label: "Kind 6–11 Jahre" },
+        { bisAlter: 14, preis: 640, label: "Kind 12–14 Jahre" },
+      ],
+      dzPreis: 1190,
+      ezPreis: 1310,
+    },
   },
   {
     id: "sommerfreizeit-zell-2026",
@@ -81,12 +224,26 @@ const FREIZEITEN = [
     datum: "28. Juni – 5. Juli 2026",
     ort: "Sportresort Alpenblick, Zell am See",
     anreise: "Eigene Anreise",
-    preise: [],
-    kinderpreise: null,
-    anzahlung: "—",
+    preise: [
+      { label: "DZ (7 Nächte)", value: "915 € p.P." },
+      { label: "EZ (7 Nächte)", value: "1.055 € p.P." },
+    ],
+    kinderpreise: "0–2 J.: 100 € · 3–5 J.: 270 € · 6–11 J.: 450 € · 12–14 J.: 650 €",
+    anzahlung: "200 € / Person",
     anmeldeschluss: "Letzte Plätze!",
     zimmerTypen: ["DZ", "EZ"],
     hasBus: false,
+    pricing: {
+      referenzDatum: "2026-06-28",
+      kinderBrackets: [
+        { bisAlter: 2,  preis: 100, label: "Kind 0–2 Jahre" },
+        { bisAlter: 5,  preis: 270, label: "Kind 3–5 Jahre" },
+        { bisAlter: 11, preis: 450, label: "Kind 6–11 Jahre" },
+        { bisAlter: 14, preis: 650, label: "Kind 12–14 Jahre" },
+      ],
+      dzPreis: 915,
+      ezPreis: 1055,
+    },
   },
   {
     id: "sonstiges",
@@ -100,6 +257,7 @@ const FREIZEITEN = [
     anmeldeschluss: "—",
     zimmerTypen: [],
     hasBus: false,
+    pricing: null,
   },
 ];
 
@@ -151,7 +309,13 @@ function Field({
   );
 }
 
-// ── Hauptkomponente ───────────────────────────────────────────────────────────
+// ── Formular-Typen ────────────────────────────────────────────────────────────
+
+type Teilnehmer = {
+  vorname: string;
+  nachname: string;
+  geburtsdatum: string;
+};
 
 type FormData = {
   // Kontakt (immer)
@@ -169,8 +333,8 @@ type FormData = {
   // Freizeit
   freizeit: string;
   zimmertyp: string;
-  personenanzahl: string;
-  kinderInfo: string;
+  skipasOption: string;
+  teilnehmer: Teilnehmer[];
   anmerkungen: string;
   // SEPA
   iban: string;
@@ -184,14 +348,19 @@ type FormData = {
   bildrechte: boolean;
 };
 
+const EMPTY_TEILNEHMER: Teilnehmer = { vorname: "", nachname: "", geburtsdatum: "" };
+
 const INITIAL: FormData = {
   vorname: "", nachname: "", email: "", telefon: "",
   geburtsdatum: "", strasse: "", plz: "", ort: "",
   sportangebote: [], beitragsart: "",
-  freizeit: "", zimmertyp: "", personenanzahl: "1", kinderInfo: "", anmerkungen: "",
+  freizeit: "", zimmertyp: "", skipasOption: "skipass",
+  teilnehmer: [{ ...EMPTY_TEILNEHMER }], anmerkungen: "",
   iban: "", kreditinstitut: "", kontoinhaber: "", abbuchungAb: "",
   sepaMandat: false, satzung: false, datenschutz: false, bildrechte: false,
 };
+
+// ── Hauptkomponente ───────────────────────────────────────────────────────────
 
 export default function MitgliedForm() {
   const [wantMitglied, setWantMitglied] = useState(true);
@@ -214,7 +383,7 @@ export default function MitgliedForm() {
 
   function toggleWant(which: "mitglied" | "freizeit") {
     if (which === "mitglied") {
-      if (wantMitglied && !wantFreizeit) return; // mind. eines aktiv
+      if (wantMitglied && !wantFreizeit) return;
       setWantMitglied((v) => !v);
     } else {
       if (wantFreizeit && !wantMitglied) return;
@@ -222,7 +391,40 @@ export default function MitgliedForm() {
     }
   }
 
+  function addTeilnehmer() {
+    set("teilnehmer", [...form.teilnehmer, { ...EMPTY_TEILNEHMER }]);
+  }
+
+  function removeTeilnehmer(index: number) {
+    set("teilnehmer", form.teilnehmer.filter((_, i) => i !== index));
+  }
+
+  function updateTeilnehmer(index: number, field: keyof Teilnehmer, value: string) {
+    set("teilnehmer", form.teilnehmer.map((t, i) => i === index ? { ...t, [field]: value } : t));
+  }
+
   const selectedFreizeit = FREIZEITEN.find((f) => f.id === form.freizeit);
+
+  // Preise je Teilnehmer (live)
+  const teilnehmerPreise: (PriceResult | null)[] = selectedFreizeit?.pricing
+    ? form.teilnehmer.map((t) =>
+        t.geburtsdatum
+          ? berechnePersPreis(
+              t.geburtsdatum,
+              selectedFreizeit.pricing!,
+              form.zimmertyp || "DZ",
+              form.skipasOption
+            )
+          : null
+      )
+    : [];
+
+  const gesamtPreis = teilnehmerPreise.reduce((s, r) => s + (r?.preis ?? 0), 0);
+  const alleHabenGebdatum = form.teilnehmer.every((t) => t.geburtsdatum);
+  const anzahlungPersonen = teilnehmerPreise.filter((r, i) =>
+    r === null ? true : !r.keinAnzahlung
+  ).length || form.teilnehmer.length;
+  const anzahlungGesamt = anzahlungPersonen * 200;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -274,6 +476,9 @@ export default function MitgliedForm() {
           )}
           {wantFreizeit && form.freizeit && (
             <p><span className="text-secondary">Freizeit:</span> {selectedFreizeit?.label}</p>
+          )}
+          {wantFreizeit && form.teilnehmer.length > 0 && (
+            <p><span className="text-secondary">Teilnehmer:</span> {form.teilnehmer.length} {form.teilnehmer.length === 1 ? "Person" : "Personen"}</p>
           )}
         </div>
         <p className="text-xs text-secondary">
@@ -536,7 +741,11 @@ export default function MitgliedForm() {
             <Field label="Freizeit auswählen" required>
               <select
                 value={form.freizeit}
-                onChange={(e) => { set("freizeit", e.target.value); set("zimmertyp", ""); }}
+                onChange={(e) => {
+                  set("freizeit", e.target.value);
+                  set("zimmertyp", "");
+                  set("skipasOption", "skipass");
+                }}
                 required={wantFreizeit}
                 className={inputClass}
               >
@@ -604,23 +813,184 @@ export default function MitgliedForm() {
                         </label>
                       ))}
                     </div>
+                    {form.zimmertyp === "Appartement" && (
+                      <p className="text-xs text-secondary mt-xs">Appartement-Preis auf Anfrage — Rainer Nordhaus meldet sich nach der Anmeldung.</p>
+                    )}
                   </Field>
                 )}
 
-                {/* Anzahl Personen */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
-                  <Field label="Anzahl Erwachsene" required>
-                    <input type="number" min="1" max="10"
-                      value={form.personenanzahl} onChange={(e) => set("personenanzahl", e.target.value)}
-                      required={wantFreizeit} className={inputClass} />
-                  </Field>
-                  {(selectedFreizeit.kinderpreise) && (
-                    <Field label="Kinder (Alter angeben)" hint="z.B. 1 Kind, 8 Jahre">
-                      <input type="text"
-                        value={form.kinderInfo} onChange={(e) => set("kinderInfo", e.target.value)}
-                        className={inputClass} placeholder="z.B. 1 Kind, 8 Jahre" />
-                    </Field>
+                {/* Skipass-Option (nur Zell Jan) */}
+                {selectedFreizeit.pricing?.skipasOptionen && (
+                  <div>
+                    <p className="font-label-bold text-[10px] uppercase tracking-wider text-secondary mb-sm">
+                      Skipass-Option <span className="text-primary">*</span>
+                    </p>
+                    <div className="space-y-xs">
+                      {selectedFreizeit.pricing.skipasOptionen.map((opt) => (
+                        <label
+                          key={opt.id}
+                          className={`flex items-center justify-between gap-sm p-sm rounded-xl border cursor-pointer transition-colors ${
+                            form.skipasOption === opt.id
+                              ? "border-primary bg-primary/5"
+                              : "border-surface-container-highest bg-surface-container hover:border-primary/40"
+                          }`}
+                        >
+                          <div className="flex items-center gap-sm">
+                            <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${form.skipasOption === opt.id ? "border-primary" : "border-surface-container-highest"}`}>
+                              {form.skipasOption === opt.id && <span className="w-2 h-2 rounded-full bg-primary block" />}
+                            </span>
+                            <input type="radio" name="skipasOption" value={opt.id}
+                              checked={form.skipasOption === opt.id}
+                              onChange={() => set("skipasOption", opt.id)}
+                              className="sr-only" />
+                            <span className={`text-sm ${form.skipasOption === opt.id ? "text-primary font-label-bold" : "text-on-background"}`}>{opt.label}</span>
+                          </div>
+                          <span className={`font-extrabold text-sm flex-shrink-0 ${form.skipasOption === opt.id ? "text-primary" : "text-secondary"}`}>
+                            {opt.preis.toLocaleString("de-DE")} € p.P.
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                    {selectedFreizeit.pricing.ezZuschlag !== undefined && (
+                      <p className="text-xs text-secondary mt-xs">EZ-Zuschlag: +{selectedFreizeit.pricing.ezZuschlag} € p.P. (wird automatisch addiert)</p>
+                    )}
+                  </div>
+                )}
+
+                {/* Teilnehmer */}
+                <div>
+                  <div className="flex items-center justify-between mb-sm">
+                    <p className="font-label-bold text-[10px] uppercase tracking-wider text-secondary">
+                      Teilnehmer <span className="text-primary">*</span>
+                    </p>
+                    <span className="bg-primary text-on-primary text-xs font-extrabold px-sm py-xs rounded-full">
+                      {form.teilnehmer.length} {form.teilnehmer.length === 1 ? "Person" : "Personen"}
+                    </span>
+                  </div>
+                  {!form.zimmertyp && selectedFreizeit.zimmerTypen.length > 0 && (
+                    <p className="text-xs text-amber-600 mb-sm">Bitte zuerst Zimmertyp wählen, um Preise zu berechnen.</p>
                   )}
+
+                  <div className="space-y-sm">
+                    {form.teilnehmer.map((t, i) => {
+                      const pr = teilnehmerPreise[i] ?? null;
+                      return (
+                        <div key={i} className="bg-surface-container rounded-xl p-sm">
+                          <div className="flex items-center justify-between mb-sm">
+                            <p className="font-label-bold text-[10px] uppercase tracking-wider text-secondary">
+                              {i === 0 ? "Anmeldende Person" : `Person ${i + 1}`}
+                            </p>
+                            {i > 0 && (
+                              <button
+                                type="button"
+                                onClick={() => removeTeilnehmer(i)}
+                                className="w-6 h-6 rounded-full bg-surface-container-highest hover:bg-red-100 flex items-center justify-center transition-colors"
+                                aria-label="Person entfernen"
+                              >
+                                <span className="material-symbols-outlined text-sm text-secondary">close</span>
+                              </button>
+                            )}
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-sm">
+                            <Field label="Vorname" required>
+                              <input
+                                type="text"
+                                value={t.vorname}
+                                onChange={(e) => updateTeilnehmer(i, "vorname", e.target.value)}
+                                required={wantFreizeit}
+                                className={inputClass}
+                                placeholder="Max"
+                              />
+                            </Field>
+                            <Field label="Nachname" required>
+                              <input
+                                type="text"
+                                value={t.nachname}
+                                onChange={(e) => updateTeilnehmer(i, "nachname", e.target.value)}
+                                required={wantFreizeit}
+                                className={inputClass}
+                                placeholder="Mustermann"
+                              />
+                            </Field>
+                            <div>
+                              <Field label="Geburtsdatum" required>
+                                <input
+                                  type="date"
+                                  value={t.geburtsdatum}
+                                  onChange={(e) => updateTeilnehmer(i, "geburtsdatum", e.target.value)}
+                                  required={wantFreizeit}
+                                  className={inputClass}
+                                />
+                              </Field>
+                              {pr && (
+                                <div className="mt-xs">
+                                  <span className={`inline-flex items-center gap-xs px-xs py-[2px] rounded-full text-[10px] font-label-bold uppercase tracking-wide leading-tight ${
+                                    pr.preis === 0 && pr.hinweis
+                                      ? "bg-amber-100 text-amber-800"
+                                      : pr.keinAnzahlung
+                                      ? "bg-blue-50 text-blue-700"
+                                      : "bg-primary/10 text-primary"
+                                  }`}>
+                                    {pr.kategorie}
+                                    {pr.preis > 0 ? ` · ${pr.preis.toLocaleString("de-DE")} €` : pr.preis === 0 && !pr.hinweis ? " · inklusive" : " · auf Anfrage"}
+                                  </span>
+                                  {pr.hinweis && (
+                                    <p className="text-xs text-amber-600 mt-xs leading-tight">{pr.hinweis}</p>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={addTeilnehmer}
+                    className="mt-sm w-full flex items-center justify-center gap-xs border-2 border-dashed border-primary/40 rounded-xl py-sm text-primary font-label-bold text-sm hover:border-primary hover:bg-primary/5 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-base">person_add</span>
+                    Person hinzufügen
+                  </button>
+
+                  {/* Personen-Zusammenfassung */}
+                  <div className="mt-sm bg-primary/5 border border-primary/20 rounded-xl p-sm space-y-sm">
+                    <div className="flex items-center justify-between gap-sm">
+                      <div className="flex items-center gap-sm">
+                        <span className="material-symbols-outlined text-primary text-xl flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
+                        <div>
+                          <p className="font-extrabold text-primary text-sm">
+                            {form.teilnehmer.length} {form.teilnehmer.length === 1 ? "Person" : "Personen"} angemeldet
+                          </p>
+                          {form.zimmertyp && <p className="text-xs text-secondary">Zimmertyp: {form.zimmertyp}</p>}
+                        </div>
+                      </div>
+                      {alleHabenGebdatum && gesamtPreis > 0 && (
+                        <div className="text-right flex-shrink-0">
+                          <p className="text-[10px] text-secondary font-label-bold uppercase tracking-wider">Gesamtpreis</p>
+                          <p className="font-extrabold text-primary text-base">{gesamtPreis.toLocaleString("de-DE")} €</p>
+                        </div>
+                      )}
+                    </div>
+                    {selectedFreizeit.anzahlung !== "—" && alleHabenGebdatum && (
+                      <div className="flex items-center justify-between pt-sm border-t border-primary/10">
+                        <div>
+                          <span className="text-xs text-secondary">Anzahlung ({anzahlungPersonen} × 200 €)</span>
+                          {anzahlungPersonen < form.teilnehmer.length && (
+                            <span className="text-[10px] text-secondary block">Kinder 0–2 Jahre: keine Anzahlung</span>
+                          )}
+                        </div>
+                        <span className="font-extrabold text-primary text-sm">{anzahlungGesamt.toLocaleString("de-DE")} €</span>
+                      </div>
+                    )}
+                    {!alleHabenGebdatum && (
+                      <p className="text-xs text-secondary pt-sm border-t border-primary/10">
+                        Geburtsdaten aller Personen eingeben um Gesamtpreis zu berechnen.
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 {/* Anmerkungen */}
