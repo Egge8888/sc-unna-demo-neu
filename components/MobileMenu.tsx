@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type NavPage = "home" | "aktuelles" | "termine" | "freizeiten" | "galerie" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "termine" | "freizeiten" | "galerie" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "kontakt" | "";
 
 export default function MobileMenu({ current = "" }: { current?: NavPage }) {
   const [open, setOpen] = useState(false);
@@ -55,7 +55,10 @@ export default function MobileMenu({ current = "" }: { current?: NavPage }) {
           <Link href="/galerie" className={linkClass(current === "galerie")} onClick={close}>Galerie</Link>
           <Link href="/impressum" className={linkClass(current === "impressum")} onClick={close}>Impressum</Link>
 
-          <div className="p-md">
+          <div className="p-md space-y-xs">
+            <Link href="/kontakt" onClick={close} className={`block w-full border font-label-bold text-label-bold py-sm rounded transition-colors text-xs text-center ${current === "kontakt" ? "border-primary text-primary bg-primary/5" : "border-outline text-on-surface-variant hover:border-primary hover:text-primary"}`}>
+              Kontakt
+            </Link>
             <Link href="/mitglied-werden" onClick={close} className="block w-full bg-primary text-on-primary font-label-bold text-label-bold py-sm rounded hover:opacity-90 transition-opacity text-xs text-center">
               Mitglied werden
             </Link>

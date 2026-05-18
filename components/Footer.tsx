@@ -16,8 +16,17 @@ export default function Footer() {
           <h4 className="font-label-bold text-label-bold text-on-surface-variant mb-sm">Kontakt</h4>
           <ul className="space-y-xs font-body-md text-body-md text-secondary">
             <li>Stralsunder Str. 63, 59427 Unna</li>
-            <li>info@scunna.de</li>
-            <li>02303/21960</li>
+            <li>
+              <a href="mailto:info@scunna.de" className="hover:text-primary transition-colors">
+                info@scunna.de
+              </a>
+            </li>
+            <li>02303 / 21960</li>
+            <li>
+              <Link className="hover:text-primary transition-colors inline-flex items-center gap-xs" href="/kontakt">
+                Kontaktformular →
+              </Link>
+            </li>
           </ul>
         </div>
         <div>

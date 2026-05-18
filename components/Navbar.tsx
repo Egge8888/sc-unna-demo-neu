@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
 
-type NavPage = "home" | "aktuelles" | "termine" | "freizeiten" | "galerie" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "";
+type NavPage = "home" | "aktuelles" | "termine" | "freizeiten" | "galerie" | "ski" | "badminton" | "radfahren" | "yoga" | "pilates" | "wassergymnastik" | "wandern" | "vorstand" | "stammtisch" | "impressum" | "datenschutz" | "kontakt" | "";
 
 export default function Navbar({ current = "" }: { current?: NavPage }) {
   const link = (page: NavPage, always = false) =>
@@ -79,6 +79,17 @@ export default function Navbar({ current = "" }: { current?: NavPage }) {
         </div>
 
         <div className="flex items-center gap-2 flex-shrink-0">
+          <Link
+            href="/kontakt"
+            className={`font-label-bold text-label-bold py-2 px-4 rounded border transition-colors hidden md:block whitespace-nowrap text-xs ${
+              current === "kontakt"
+                ? "border-primary text-primary bg-primary/5"
+                : "border-outline text-on-surface-variant hover:border-primary hover:text-primary"
+            }`}
+            aria-current={current === "kontakt" ? "page" : undefined}
+          >
+            Kontakt
+          </Link>
           <Link href="/mitglied-werden" className="bg-primary text-on-primary font-label-bold text-label-bold py-2 px-5 rounded hover:opacity-90 transition-opacity hidden md:block whitespace-nowrap text-xs">
             Mitglied werden
           </Link>
