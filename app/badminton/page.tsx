@@ -110,7 +110,7 @@ export default async function BadmintonPage() {
                   <div className="flex items-center gap-md text-body-md">
                     <span className="font-label-bold text-label-bold w-6 text-on-surface">Mo</span>
                     <span className="text-on-surface">17:45 – 19:15</span>
-                    <span className="text-secondary">SpH Schulzentrum</span>
+                    <span className="text-secondary">SpH SZ Süd</span>
                   </div>
                   <div className="flex items-center gap-md text-body-md">
                     <span className="font-label-bold text-label-bold w-6 text-on-surface">Di</span>
@@ -142,7 +142,7 @@ export default async function BadmintonPage() {
                 <div className="flex items-center gap-md text-body-md">
                   <span className="font-label-bold text-label-bold w-6 text-on-surface">Mo</span>
                   <span className="text-on-surface">19:15 – 22:00</span>
-                  <span className="text-secondary">SpH Schulzentrum</span>
+                  <span className="text-secondary">SpH SZ Süd</span>
                 </div>
                 <div className="flex items-center gap-md text-body-md">
                   <span className="font-label-bold text-label-bold w-6 text-on-surface">Mi</span>
@@ -168,7 +168,7 @@ export default async function BadmintonPage() {
                 <div className="flex items-center gap-md text-body-md">
                   <span className="font-label-bold text-label-bold w-6 text-on-surface">Mo</span>
                   <span className="text-on-surface">19:15 – 22:00</span>
-                  <span className="text-secondary">SpH Schulzentrum</span>
+                  <span className="text-secondary">SpH SZ Süd</span>
                 </div>
                 <div className="flex items-center gap-md text-body-md flex-wrap">
                   <span className="font-label-bold text-label-bold w-6 text-on-surface">Di</span>
@@ -193,19 +193,7 @@ export default async function BadmintonPage() {
 
           {/* Sporthallen */}
           <h3 className="font-headline-md text-headline-md text-on-background mb-md">Sporthallen</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-lg">
-            <div className="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient flex items-start gap-md">
-              <span className="material-symbols-outlined text-primary text-3xl mt-xs flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
-              <div>
-                <p className="font-label-bold text-label-bold text-primary uppercase tracking-wider text-[11px] mb-xs">SpH Schulzentrum · Unna-Mitte</p>
-                <p className="font-headline-md text-on-background mb-xs">Sporthalle am Schulzentrum</p>
-                <p className="font-body-md text-secondary text-sm mb-md">Herder-Straße 14, 59423 Unna</p>
-                <a href="https://maps.google.com/?q=Herderstraße+14,+59423+Unna" target="_blank" rel="noopener" className="inline-flex items-center gap-xs font-label-bold text-label-bold text-primary text-xs uppercase tracking-wider hover:underline">
-                  <span className="material-symbols-outlined text-sm">open_in_new</span>
-                  Google Maps öffnen
-                </a>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-lg">
             <div className="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-md shadow-ambient flex items-start gap-md">
               <span className="material-symbols-outlined text-primary text-3xl mt-xs flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
               <div>
